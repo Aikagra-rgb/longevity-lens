@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
-from backend.routers import chat, documents, biomarkers, lab_reports, export
+from backend.routers import chat, documents, biomarkers, lab_reports, export, epigenetics
 from backend.services.vector_store import VectorStoreService
 from backend.models.schemas import HealthResponse
 from backend.config import FRONTEND_DIR, OPENAI_API_KEY
@@ -16,8 +16,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="LongevityLens — Health/Longevity Data Copilot",
-    description="Backend for RAG-powered health research assistant & biological age calculator",
-    version="1.1.0",
+    description="Backend for RAG-powered health research assistant & epigenetic biological age calculator",
+    version="1.2.0",
     lifespan=lifespan
 )
 
@@ -35,6 +35,7 @@ app.include_router(chat.router)
 app.include_router(documents.router)
 app.include_router(biomarkers.router)
 app.include_router(lab_reports.router)
+app.include_router(epigenetics.router)
 app.include_router(export.router)
 
 # Health check

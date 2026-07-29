@@ -4,6 +4,7 @@ import { renderChat } from './components/Chat.js';
 import { renderDocuments } from './components/DocumentUpload.js';
 import { renderBiomarkers } from './components/BiomarkerPanel.js';
 import { renderBioAgePanel } from './components/BioAgePanel.js';
+import { renderEpigeneticPanel } from './components/EpigeneticPanel.js';
 import { getDocuments, checkHealth } from './utils/api.js';
 
 export const state = {
@@ -90,6 +91,8 @@ export function navigateTo(view) {
     setTimeout(() => {
         if (view === 'chat') {
             renderChat();
+        } else if (view === 'epigenetics') {
+            renderEpigeneticPanel();
         } else if (view === 'bioage') {
             renderBioAgePanel();
         } else if (view === 'documents') {

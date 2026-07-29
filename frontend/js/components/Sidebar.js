@@ -22,8 +22,11 @@ export function renderSidebar() {
                 <a href="#" class="nav-link ${state.currentView === 'chat' ? 'active' : ''}" data-view="chat">
                     💬 Chat Research
                 </a>
+                <a href="#" class="nav-link ${state.currentView === 'epigenetics' ? 'active' : ''}" data-view="epigenetics">
+                    🔬 Epigenetic DNA Clocks
+                </a>
                 <a href="#" class="nav-link ${state.currentView === 'bioage' ? 'active' : ''}" data-view="bioage">
-                    🧬 Biological Age Audit
+                    🧬 PhenoAge Biological Audit
                 </a>
                 <a href="#" class="nav-link ${state.currentView === 'documents' ? 'active' : ''}" data-view="documents">
                     📄 Document Library
@@ -39,7 +42,7 @@ export function renderSidebar() {
                     <span id="sidebar-doc-count">${state.documents.length || 8}</span>
                 </div>
                 <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
-                    FOXO Longevity Research Engine v1.1
+                    FOXO Longevity Research Engine v1.2
                 </div>
             </div>
         </div>
