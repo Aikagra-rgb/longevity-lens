@@ -1,0 +1,21 @@
+TITLE: NAD+ Decline and Aging: The Role of Nicotinamide Metabolism in Longevity
+
+ABSTRACT
+Nicotinamide adenine dinucleotide (NAD+) is a vital coenzyme found in all living cells, central to cellular metabolism and energy production. Emerging research indicates a systemic decline in NAD+ levels with advancing age, contributing to metabolic dysfunction and age-related pathologies. This review explores the mechanisms of NAD+ decline, the role of NAD+-consuming enzymes (sirtuins, PARPs, CD38), and the potential of NAD+ precursors as interventions for healthspan extension.
+
+INTRODUCTION
+The maintenance of cellular energy homeostasis is fundamental to health and survival. NAD+ serves as an essential electron transporter in mitochondrial oxidative phosphorylation and glycolysis. Beyond its role in redox reactions, NAD+ is a critical substrate for several signaling enzymes, including sirtuins (SIRT1-7), which regulate gene expression, and poly(ADP-ribose) polymerases (PARPs), which mediate DNA repair. Over the lifespan of an organism, intracellular NAD+ concentrations steadily decline. This decline compromises mitochondrial function, impairs DNA repair, and alters epigenetic regulation, driving the aging phenotype.
+
+KEY FINDINGS
+1. Mechanisms of Decline: The age-associated drop in NAD+ is driven by both decreased synthesis and increased consumption. The salvage pathway, the primary route for NAD+ synthesis, relies on the enzyme NAMPT, whose levels decline with age. Concurrently, DNA damage accumulates with age, hyperactivating PARP1, which consumes massive amounts of NAD+. Furthermore, the expression of CD38, an ectoenzyme expressed on immune cells that degrades NAD+, increases significantly with age and inflammation.
+2. Sirtuin Activation: Sirtuins are NAD+-dependent deacetylases linked to longevity. When NAD+ levels are high, sirtuins are activated, promoting mitochondrial biogenesis (via PGC-1alpha), reducing oxidative stress, and enhancing metabolic flexibility. The decline in NAD+ fundamentally starves sirtuins of their necessary substrate.
+3. Precursor Supplementation (NMN and NR): Supplementation with NAD+ precursors—Nicotinamide Riboside (NR) and Nicotinamide Mononucleotide (NMN)—has shown efficacy in restoring NAD+ levels in various tissues. In rodent models, NMN supplementation mitigated age-associated physiological decline, improved insulin sensitivity, enhanced eye function, and increased mitochondrial respiratory capacity.
+4. Human Trials: Early human clinical trials demonstrate that oral administration of NR and NMN safely and effectively raises blood NAD+ levels. Initial findings suggest modest improvements in insulin sensitivity in prediabetic women and enhanced skeletal muscle mitochondrial function, though large-scale, long-term trials assessing hard clinical endpoints are still ongoing.
+
+CLINICAL IMPLICATIONS
+Restoring NAD+ represents a promising therapeutic strategy for combating age-related metabolic decline and neurodegeneration. While precursor supplementation is a direct approach, lifestyle interventions also potently modulate NAD+ metabolism.
+Aerobic exercise and resistance training upregulate NAMPT expression, thereby increasing the cellular capacity to salvage and synthesize NAD+. Caloric restriction and intermittent fasting act as mild biological stressors that similarly boost NAD+ levels and activate sirtuin pathways.
+Strategies targeting CD38 inhibition (using flavonoids like apigenin and quercetin) or PARP inhibition offer complementary approaches to preserve the cellular NAD+ pool.
+
+CONCLUSION
+The decline of NAD+ is a fundamental hallmark of aging, disrupting the balance of energy metabolism and cellular repair. By understanding the intricate network of NAD+ synthesis and consumption, researchers are developing targeted interventions—ranging from lifestyle modifications to pharmacological precursors—that hold significant promise for extending human healthspan and delaying the onset of age-related diseases.

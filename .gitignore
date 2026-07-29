@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Project specifics
+chroma_db/
+*.pdf
+
+# Node/Frontend
+node_modules/
+dist/
+build/
+.next/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

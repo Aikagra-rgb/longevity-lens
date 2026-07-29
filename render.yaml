@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: longevity-lens
+    runtime: docker
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false

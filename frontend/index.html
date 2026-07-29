@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LongevityLens — Health Research Copilot</title>
+    <meta name="description" content="Premium RAG-powered health research assistant for longevity data and biomarker analysis.">
+    <meta property="og:title" content="LongevityLens — Health Research Copilot">
+    <meta property="og:description" content="Premium RAG-powered health research assistant for longevity data and biomarker analysis.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/biomarker.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar"></nav>
+        <div id="main-area">
+            <header id="header"></header>
+            <main id="content-area"></main>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-panel glass-panel">
+            <div class="modal-header">
+                <h2>⚙️ Settings</h2>
+                <button id="close-settings" class="icon-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <label for="api-key-input">API Key</label>
+                <div class="input-group">
+                    <input type="password" id="api-key-input" class="input" placeholder="Enter your X-API-Key">
+                    <button id="toggle-api-key" class="btn-ghost">Show</button>
+                </div>
+                <div class="modal-actions">
+                    <button id="test-connection-btn" class="btn-secondary">Test Connection</button>
+                    <button id="save-settings-btn" class="btn-primary">Save Key</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="toast hidden"></div>
+
+    <!-- Application Logic -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+[
+  {
+    "name": "C-Reactive Protein",
+    "abbreviation": "CRP",
+    "aliases": ["hs-CRP", "high-sensitivity CRP", "C-reactive protein"],
+    "category": "Inflammation",
+    "unit": "mg/L",
+    "reference_range": {"min": 0, "max": 3.0},
+    "optimal_range": {"min": 0, "max": 1.0},
+    "critical_high": 10.0,
+    "elevated_indicates": ["Chronic inflammation", "Cardiovascular disease risk", "Infection", "Autoimmune conditions", "Metabolic syndrome"],
+    "low_indicates": ["Generally favorable", "Low systemic inflammation", "Healthy aging"],
+    "lifestyle_factors": {
+      "increases": ["Smoking", "Sedentary lifestyle", "Obesity", "High-sugar diet", "Chronic stress", "Poor sleep"],
+      "decreases": ["Regular exercise", "Mediterranean diet", "Omega-3 fatty acids", "Stress management", "Weight loss", "Adequate sleep"]
+    },
+    "related_panels": ["Inflammatory Panel", "Cardiovascular Risk Panel"],
+    "longevity_relevance": "CRP is a primary marker of 'inflammaging' — the chronic low-grade inflammation that accelerates biological aging. Maintaining hs-CRP below 1.0 mg/L is associated with reduced cardiovascular events, lower cancer risk, and slower epigenetic aging as measured by GrimAge and other biological age clocks."
+  },
+  {
+    "name": "Interleukin-6",
+    "abbreviation": "IL-6",
+    "aliases": ["IL6"],
+    "category": "Inflammation",
+    "unit": "pg/mL",
+    "reference_range": {"min": 0, "max": 7.0},
+    "optimal_range": {"min": 0, "max": 3.0},
+    "critical_high": 15.0,
+    "elevated_indicates": ["Systemic inflammation", "Senescent cell burden", "Muscle breakdown", "Rheumatoid arthritis", "Chronic infections"],
+    "low_indicates": ["Healthy immune function", "Low senescence load", "Optimal metabolic state"],
+    "lifestyle_factors": {
+      "increases": ["Sedentary behavior", "High visceral fat", "Sleep deprivation", "Psychological stress", "High glycemic load diets"],
+      "decreases": ["Aerobic exercise", "Resistance training", "Caloric restriction", "Curcumin supplementation", "Adequate hydration"]
+    },
+    "related_panels": ["Inflammatory Panel", "Aging Biomarkers"],
+    "longevity_relevance": "IL-6 is a key component of the Senescence-Associated Secretory Phenotype (SASP). Elevated baseline IL-6 strongly predicts frailty, cognitive decline, and all-cause mortality in older adults, making it a critical target for longevity interventions."
+  },
+  {
+    "name": "Homocysteine",
+    "abbreviation": "Hcy",
+    "aliases": ["Total Homocysteine"],
+    "category": "Inflammation",
+    "unit": "µmol/L",
+    "reference_range": {"min": 5.0, "max": 15.0},
+    "optimal_range": {"min": 5.0, "max": 8.0},
+    "critical_high": 20.0,
+    "elevated_indicates": ["B-vitamin deficiency (B12, B6, Folate)", "Cardiovascular risk", "Cognitive decline risk", "MTHFR gene mutation effects", "Renal impairment"],
+    "low_indicates": ["Adequate methylation", "Sufficient B-vitamin status", "Low vascular risk"],
+    "lifestyle_factors": {
+      "increases": ["Excessive coffee consumption", "Smoking", "Alcohol abuse", "Sedentary lifestyle", "Vegan diet without B12 supplementation"],
+      "decreases": ["Folate-rich diet", "B-complex supplementation (methylated)", "Exercise", "Moderate protein intake", "Stress reduction"]
+    },
+    "related_panels": ["Cardiovascular Risk Panel", "Cognitive Health Panel", "Methylation Panel"],
+    "longevity_relevance": "Homocysteine is a marker of methylation capacity and vascular health. Elevated levels are independently associated with an increased risk of Alzheimer's disease, osteoporotic fractures, and cardiovascular mortality, reflecting underlying deficits in cellular maintenance pathways."
+  },
+  {
+    "name": "Tumor Necrosis Factor-alpha",
+    "abbreviation": "TNF-alpha",
+    "aliases": ["TNF-a", "Cachexin"],
+    "category": "Inflammation",
+    "unit": "pg/mL",
+    "reference_range": {"min": 0, "max": 8.1},
+    "optimal_range": {"min": 0, "max": 4.0},
+    "critical_high": 15.0,
+    "elevated_indicates": ["Chronic inflammation", "Insulin resistance", "Autoimmune disease", "Macrophage activation", "Osteoarthritis"],
+    "low_indicates": ["Controlled inflammation", "Healthy immune regulation"],
+    "lifestyle_factors": {
+      "increases": ["Obesity (especially visceral)", "Western diet", "Chronic stress", "Sleep apnea", "Exposure to environmental toxins"],
+      "decreases": ["Weight loss", "Plant-based diet", "Polyphenol consumption (resveratrol, quercetin)", "Regular physical activity", "Cold exposure"]
+    },
+    "related_panels": ["Inflammatory Panel", "Metabolic Health Panel"],
+    "longevity_relevance": "TNF-alpha acts as a master regulator of the inflammatory cascade and is intricately linked to insulin resistance and inflammaging. Lowering TNF-alpha signaling is associated with extended healthspan and protection against age-related neurodegeneration."
+  },
+  {
+    "name": "Fasting Glucose",
+    "abbreviation": "Glu",
+    "aliases": ["Fasting Blood Sugar", "FBS"],
+    "category": "Metabolic",
+    "unit": "mg/dL",
+    "reference_range": {"min": 70, "max": 100},
+    "optimal_range": {"min": 72, "max": 85},
+    "critical_high": 126.0,
+    "elevated_indicates": ["Insulin resistance", "Pre-diabetes", "Type 2 Diabetes", "High stress (cortisol)", "Poor sleep quality"],
+    "low_indicates": ["Excellent insulin sensitivity", "Risk of hypoglycemia (if symptomatic)", "Strict ketogenic diet"],
+    "lifestyle_factors": {
+      "increases": ["High refined carbohydrate intake", "Sedentary lifestyle", "Poor sleep", "Chronic stress", "Late-night eating"],
+      "decreases": ["Low-carbohydrate diet", "Regular exercise (especially post-meal walks)", "Time-restricted eating", "Adequate sleep", "Strength training"]
+    },
+    "related_panels": ["Comprehensive Metabolic Panel", "Diabetes Risk Panel"],
+    "longevity_relevance": "Fasting glucose is a fundamental metric of metabolic flexibility. Maintaining fasting glucose in the lower-normal range (72-85 mg/dL) correlates with lower glycation of proteins, reduced vascular damage, and significantly improved long-term healthspan."
+  },
+  {
+    "name": "Hemoglobin A1c",
+    "abbreviation": "HbA1c",
+    "aliases": ["Glycated Hemoglobin", "A1c"],
+    "category": "Metabolic",
+    "unit": "%",
+    "reference_range": {"min": 4.0, "max": 5.6},
+    "optimal_range": {"min": 4.0, "max": 5.3},
+    "critical_high": 6.5,
+    "elevated_indicates": ["Chronic hyperglycemia", "Pre-diabetes/Diabetes", "Increased Advanced Glycation End-products (AGEs)", "Cardiovascular risk"],
+    "low_indicates": ["Excellent long-term glucose control", "Anemia (can cause falsely low readings)", "Red blood cell turnover disorders"],
+    "lifestyle_factors": {
+      "increases": ["Consistent high sugar intake", "Lack of exercise", "Weight gain", "Chronic sleep deprivation", "High stress levels"],
+      "decreases": ["Sustained dietary improvements", "Consistent exercise routine", "Weight management", "Fiber-rich diet", "Metformin or Berberine use"]
+    },
+    "related_panels": ["Diabetes Risk Panel", "Metabolic Health Panel"],
+    "longevity_relevance": "HbA1c reflects average blood sugar over ~3 months and is a direct measure of protein glycation. Lower HbA1c is strongly associated with a reduced rate of biological aging, as less glycation means better preservation of tissue elasticity and cellular function."
+  },
+  {
+    "name": "Fasting Insulin",
+    "abbreviation": "Insulin",
+    "aliases": ["Fasting Serum Insulin"],
+    "category": "Metabolic",
+    "unit": "µIU/mL",
+    "reference_range": {"min": 2.6, "max": 24.9},
+    "optimal_range": {"min": 2.0, "max": 5.0},
+    "critical_high": 15.0,
+    "elevated_indicates": ["Insulin resistance", "Early stage metabolic dysfunction", "PCOS", "Visceral adiposity", "High carbohydrate load"],
+    "low_indicates": ["High insulin sensitivity", "Type 1 Diabetes (if very low/absent)", "Fasted state"],
+    "lifestyle_factors": {
+      "increases": ["Frequent snacking", "High glycemic load diet", "Sedentary lifestyle", "Obesity", "Poor sleep"],
+      "decreases": ["Fasting/Time-restricted eating", "Low-carb/Ketogenic diets", "High-intensity interval training (HIIT)", "Strength training", "Weight loss"]
+    },
+    "related_panels": ["Metabolic Health Panel", "Cardio-Metabolic Panel"],
+    "longevity_relevance": "Elevated fasting insulin is the earliest harbinger of metabolic syndrome, often preceding elevated glucose by decades. Keeping fasting insulin low (<5 µIU/mL) ensures low mTOR activation and promotes cellular repair mechanisms like autophagy, crucial for longevity."
+  },
+  {
+    "name": "Homeostatic Model Assessment of Insulin Resistance",
+    "abbreviation": "HOMA-IR",
+    "aliases": ["HOMA index"],
+    "category": "Metabolic",
+    "unit": "ratio",
+    "reference_range": {"min": 0, "max": 2.0},
+    "optimal_range": {"min": 0, "max": 1.0},
+    "critical_high": 3.0,
+    "elevated_indicates": ["Significant insulin resistance", "High risk for Type 2 Diabetes", "Metabolic syndrome", "NAFLD risk"],
+    "low_indicates": ["Excellent insulin sensitivity", "Metabolic flexibility", "Low risk of metabolic diseases"],
+    "lifestyle_factors": {
+      "increases": ["Caloric surplus", "High sugar diets", "Physical inactivity", "Sleep apnea", "Chronic stress"],
+      "decreases": ["Caloric deficit", "Exercise (both aerobic and resistance)", "Intermittent fasting", "Adequate sleep", "Dietary fiber intake"]
+    },
+    "related_panels": ["Metabolic Health Panel", "Longevity Baseline Panel"],
+    "longevity_relevance": "Calculated from fasting glucose and insulin, HOMA-IR is arguably the best simple metric for assessing metabolic health. An optimal HOMA-IR (<1.0) is strongly correlated with a reduced risk of the top chronic diseases of aging (CVD, cancer, neurodegeneration)."
+  },
+  {
+    "name": "Triglycerides",
+    "abbreviation": "TG",
+    "aliases": ["Trigs"],
+    "category": "Metabolic",
+    "unit": "mg/dL",
+    "reference_range": {"min": 0, "max": 150},
+    "optimal_range": {"min": 0, "max": 70},
+    "critical_high": 200.0,
+    "elevated_indicates": ["Insulin resistance", "High refined carbohydrate intake", "Excess alcohol consumption", "Fatty liver (NAFLD)", "Metabolic syndrome"],
+    "low_indicates": ["Excellent fat metabolism", "Low carbohydrate intake", "High physical activity level", "Malnutrition (rarely)"],
+    "lifestyle_factors": {
+      "increases": ["High sugar/fructose intake", "Alcohol consumption", "Sedentary lifestyle", "Refined carbohydrates", "Trans fats"],
+      "decreases": ["Low carbohydrate diets", "Omega-3 supplementation (EPA/DHA)", "Aerobic exercise", "Weight loss", "Fasting"]
+    },
+    "related_panels": ["Lipid Panel", "Cardiovascular Risk Panel", "Metabolic Health Panel"],
+    "longevity_relevance": "Triglycerides are highly responsive to diet and represent circulating fat. Low triglycerides (especially in combination with high HDL, targeting a TG/HDL ratio < 1.5) are a hallmark of profound metabolic health and significantly reduced atherosclerotic risk."
+  },
+  {
+    "name": "Low-Density Lipoprotein Cholesterol",
+    "abbreviation": "LDL-C",
+    "aliases": ["LDL", "Bad Cholesterol"],
+    "category": "Cardiovascular",
+    "unit": "mg/dL",
+    "reference_range": {"min": 0, "max": 100},
+    "optimal_range": {"min": 0, "max": 70},
+    "critical_high": 160.0,
+    "elevated_indicates": ["Increased risk of atherosclerosis", "Familial hypercholesterolemia", "Hypothyroidism", "High saturated fat intake"],
+    "low_indicates": ["Low risk for plaque formation", "Statin/PCSK9i therapy effectiveness", "Malnutrition"],
+    "lifestyle_factors": {
+      "increases": ["High saturated fat diets", "Trans fats", "Sedentary lifestyle", "Weight gain", "Unfiltered coffee (cafestol)"],
+      "decreases": ["Soluble fiber intake", "Plant sterols/stanols", "Weight loss", "Replacing saturated with polyunsaturated fats", "Statins/Ezetimibe"]
+    },
+    "related_panels": ["Lipid Panel", "Cardiovascular Risk Panel"],
+    "longevity_relevance": "Cumulative exposure to LDL particles over a lifetime is a primary causal factor for atherosclerotic cardiovascular disease (ASCVD), the leading cause of death globally. For longevity optimization, maintaining low LDL (or ApoB) from an early age dramatically reduces the lifetime risk of heart attacks."
+  },
+  {
+    "name": "High-Density Lipoprotein Cholesterol",
+    "abbreviation": "HDL-C",
+    "aliases": ["HDL", "Good Cholesterol"],
+    "category": "Cardiovascular",
+    "unit": "mg/dL",
+    "reference_range": {"min": 40, "max": 100},
+    "optimal_range": {"min": 60, "max": 85},
+    "critical_high": 100.0,
+    "elevated_indicates": ["Efficient reverse cholesterol transport", "High physical activity", "Moderate alcohol consumption", "Genetic predisposition", "Potentially dysfunctional HDL (if extremely high)"],
+    "low_indicates": ["Metabolic syndrome", "Insulin resistance", "Increased cardiovascular risk", "Sedentary lifestyle", "Smoking"],
+    "lifestyle_factors": {
+      "increases": ["Aerobic exercise", "Monounsaturated fats (olive oil)", "Moderate alcohol intake", "Smoking cessation", "Weight loss"],
+      "decreases": ["Smoking", "Obesity", "Sedentary lifestyle", "High refined carbohydrate diet", "Trans fats"]
+    },
+    "related_panels": ["Lipid Panel", "Cardiovascular Risk Panel"],
+    "longevity_relevance": "While raising HDL pharmacologically hasn't proven to reduce CVD risk, naturally high HDL is a robust marker of good metabolic health and physical fitness. The Triglyceride to HDL ratio is one of the most powerful predictors of insulin resistance and long-term metabolic health."
+  },
+  {
+    "name": "Apolipoprotein B",
+    "abbreviation": "ApoB",
+    "aliases": ["Apo B-100"],
+    "category": "Cardiovascular",
+    "unit": "mg/dL",
+    "reference_range": {"min": 0, "max": 130},
+    "optimal_range": {"min": 0, "max": 70},
+    "critical_high": 120.0,
+    "elevated_indicates": ["High atherogenic particle number", "Increased risk of cardiovascular events", "Insulin resistance (often associated with small dense LDL)", "Metabolic syndrome"],
+    "low_indicates": ["Low cardiovascular risk", "Effective lipid-lowering therapy", "Healthy particle profile"],
+    "lifestyle_factors": {
+      "increases": ["High saturated fat intake", "Refined carbohydrates", "Weight gain", "Sedentary lifestyle", "Smoking"],
+      "decreases": ["Dietary fiber", "Weight loss", "Replacing saturated fats with PUFAs", "Exercise", "Lipid-lowering medications"]
+    },
+    "related_panels": ["Advanced Lipid Panel", "Cardiovascular Risk Panel"],
+    "longevity_relevance": "ApoB represents the total number of atherogenic particles (LDL, VLDL, IDL, Lp(a)). It is now considered by many lipidologists to be a superior predictor of cardiovascular risk compared to LDL-C, making it a critical metric for long-term healthspan extension."
+  },
+  {
+    "name": "Lipoprotein(a)",
+    "abbreviation": "Lp(a)",
+    "aliases": ["Lipoprotein little a"],
+    "category": "Cardiovascular",
+    "unit": "mg/dL",
+    "reference_range": {"min": 0, "max": 30},
+    "optimal_range": {"min": 0, "max": 15},
+    "critical_high": 50.0,
+    "elevated_indicates": ["High genetic risk for early heart disease", "Increased risk for aortic valve stenosis", "Pro-thrombotic state", "Atherosclerosis risk independent of LDL"],
+    "low_indicates": ["Normal genetic profile", "Lower risk for familial early-onset CVD"],
+    "lifestyle_factors": {
+      "increases": ["Genetics (largely immutable by lifestyle)", "Menopause", "Kidney disease", "Inflammation"],
+      "decreases": ["PCSK9 inhibitors (mildly)", "Apheresis", "New targeted RNA therapies (in trials)", "Hormone replacement therapy (mildly)"]
+    },
+    "related_panels": ["Advanced Cardiovascular Risk Panel"],
+    "longevity_relevance": "Lp(a) is an independent, primarily genetically determined risk factor for cardiovascular disease. Because it is highly atherogenic and pro-thrombotic, checking it once in a lifetime is crucial for longevity planning, as those with high levels require aggressive management of all other risk factors."
+  },
+  {
+    "name": "Vitamin D, 25-Hydroxy",
+    "abbreviation": "Vit D",
+    "aliases": ["25-OH Vitamin D", "Calcifediol"],
+    "category": "Hormones & Aging",
+    "unit": "ng/mL",
+    "reference_range": {"min": 30, "max": 100},
+    "optimal_range": {"min": 40, "max": 60},
+    "critical_high": 150.0,
+    "elevated_indicates": ["Vitamin D toxicity", "Hypercalcemia risk", "Over-supplementation"],
+    "low_indicates": ["Increased risk of osteoporosis", "Depressed immune function", "Increased risk for autoimmune conditions", "Mood disorders", "Increased all-cause mortality"],
+    "lifestyle_factors": {
+      "increases": ["Sun exposure", "Vitamin D3 supplementation", "Fatty fish consumption", "Outdoor activities", "Magnesium adequacy (helps conversion)"],
+      "decreases": ["Indoor lifestyle", "High sunscreen use", "Winter season", "Obesity (sequesters Vitamin D)", "Darker skin pigmentation"]
+    },
+    "related_panels": ["Bone Health Panel", "Nutritional Panel", "Immune Function Panel"],
+    "longevity_relevance": "Vitamin D acts more like a hormone than a vitamin, influencing the expression of over 1,000 genes. Maintaining optimal levels (40-60 ng/mL) is associated with reduced all-cause mortality, preserved cognitive function, and robust immune surveillance against cancer and infections."
+  },
+  {
+    "name": "Dehydroepiandrosterone Sulfate",
+    "abbreviation": "DHEA-S",
+    "aliases": ["DHEA sulfate"],
+    "category": "Hormones & Aging",
+    "unit": "µg/dL",
+    "reference_range": {"min": 50, "max": 380},
+    "optimal_range": {"min": 200, "max": 350},
+    "critical_high": 500.0,
+    "elevated_indicates": ["Adrenal hyperplasia", "PCOS (in women)", "Excessive DHEA supplementation"],
+    "low_indicates": ["Adrenal fatigue/insufficiency", "Aging", "Chronic stress", "Depression", "Low libido"],
+    "lifestyle_factors": {
+      "increases": ["DHEA supplementation", "Stress management", "Adequate sleep", "Regular exercise", "Weight training"],
+      "decreases": ["Aging (natural decline)", "Chronic stress (high cortisol)", "Sleep deprivation", "Severe illness", "Corticosteroid use"]
+    },
+    "related_panels": ["Hormone Panel", "Adrenal Stress Panel", "Aging Biomarkers"],
+    "longevity_relevance": "DHEA is the most abundant circulating steroid hormone and declines predictably with age. It balances cortisol, supports immune function, and serves as a precursor to sex hormones. Maintaining youthful DHEA levels is correlated with better mood, bone density, and overall vitality in older age."
+  },
+  {
+    "name": "Insulin-like Growth Factor 1",
+    "abbreviation": "IGF-1",
+    "aliases": ["Somatomedin C"],
+    "category": "Hormones & Aging",
+    "unit": "ng/mL",
+    "reference_range": {"min": 101, "max": 267},
+    "optimal_range": {"min": 120, "max": 160},
+    "critical_high": 350.0,
+    "elevated_indicates": ["High growth hormone output", "Acromegaly", "High cancer risk (prostate, breast)", "High protein/dairy intake"],
+    "low_indicates": ["Growth hormone deficiency", "Malnutrition", "Sarcopenia risk", "Frailty", "Fasting state"],
+    "lifestyle_factors": {
+      "increases": ["High protein diets (especially dairy and meat)", "Strength training", "Adequate sleep", "Caloric surplus"],
+      "decreases": ["Fasting/Caloric restriction", "Plant-based diets", "Aging", "Sedentary lifestyle"]
+    },
+    "related_panels": ["Growth Hormone Panel", "Aging Biomarkers", "Metabolic Health Panel"],
+    "longevity_relevance": "IGF-1 has a complex 'Goldilocks' relationship with longevity. Very high levels drive cellular aging and cancer risk via mTOR activation, while very low levels lead to sarcopenia and frailty. Optimal longevity strategy involves maintaining moderate levels (120-160 ng/mL) to balance tissue maintenance with cancer protection."
+  },
+  {
+    "name": "Total Testosterone",
+    "abbreviation": "Test",
+    "aliases": ["Testosterone"],
+    "category": "Hormones & Aging",
+    "unit": "ng/dL",
+    "reference_range": {"min": 264, "max": 916},
+    "optimal_range": {"min": 600, "max": 800},
+    "critical_high": 1200.0,
+    "elevated_indicates": ["Exogenous testosterone use", "Testicular/Adrenal tumors", "PCOS (in women)", "Hyperthyroidism"],
+    "low_indicates": ["Hypogonadism", "Aging (Andropause)", "Metabolic syndrome", "Chronic stress", "Poor sleep"],
+    "lifestyle_factors": {
+      "increases": ["Heavy resistance training", "Adequate sleep", "Healthy fat intake", "Zinc/Vitamin D optimization", "Weight loss in obese individuals"],
+      "decreases": ["Sleep deprivation", "Chronic stress (high cortisol)", "Obesity", "Excess alcohol", "Overtraining"]
+    },
+    "related_panels": ["Male Hormone Panel", "Female Hormone Panel", "Men's/Women's Health Panel"],
+    "longevity_relevance": "Testosterone is crucial for maintaining muscle mass, bone density, and cognitive function as we age. Preventing the age-related decline in testosterone protects against sarcopenia and metabolic dysfunction, two primary drivers of frailty and age-related decline."
+  },
+  {
+    "name": "Gamma-Glutamyl Transferase",
+    "abbreviation": "GGT",
+    "aliases": ["Gamma-GT"],
+    "category": "Organ Function",
+    "unit": "U/L",
+    "reference_range": {"min": 9, "max": 48},
+    "optimal_range": {"min": 10, "max": 20},
+    "critical_high": 100.0,
+    "elevated_indicates": ["Liver stress/damage", "Alcohol abuse", "Fatty liver disease (NAFLD)", "Biliary tract disease", "High oxidative stress"],
+    "low_indicates": ["Excellent liver health", "Low oxidative stress", "Healthy glutathione status"],
+    "lifestyle_factors": {
+      "increases": ["Alcohol consumption", "Obesity", "Exposure to environmental toxins", "High sugar diet", "Certain medications (acetaminophen)"],
+      "decreases": ["Abstinence from alcohol", "Weight loss", "Antioxidant-rich diet", "Coffee consumption", "Cruciferous vegetables"]
+    },
+    "related_panels": ["Hepatic Function Panel", "Comprehensive Metabolic Panel"],
+    "longevity_relevance": "GGT is a sensitive marker of liver stress and oxidative stress. High-normal or elevated GGT is strongly associated with an increased risk of metabolic syndrome, cardiovascular disease, and all-cause mortality, reflecting a depleted cellular antioxidant (glutathione) pool."
+  },
+  {
+    "name": "Cystatin C",
+    "abbreviation": "CysC",
+    "aliases": [],
+    "category": "Organ Function",
+    "unit": "mg/L",
+    "reference_range": {"min": 0.6, "max": 1.0},
+    "optimal_range": {"min": 0.5, "max": 0.8},
+    "critical_high": 1.5,
+    "elevated_indicates": ["Decreased kidney function", "Early renal impairment", "Cardiovascular risk", "Inflammation"],
+    "low_indicates": ["Excellent kidney function", "High glomerular filtration rate (GFR)"],
+    "lifestyle_factors": {
+      "increases": ["Hypertension", "Diabetes", "Smoking", "Obesity", "High protein diets (in presence of existing kidney issues)"],
+      "decreases": ["Blood pressure control", "Blood sugar control", "Plant-based diets", "Adequate hydration", "Cardiovascular exercise"]
+    },
+    "related_panels": ["Renal Function Panel", "Cardiovascular Risk Panel"],
+    "longevity_relevance": "Cystatin C is a superior marker for estimating kidney function (eGFR) compared to creatinine, as it is less affected by muscle mass or diet. Early detection of declining renal function is vital for longevity, as chronic kidney disease dramatically accelerates cardiovascular aging and systemic inflammation."
+  },
+  {
+    "name": "Ferritin",
+    "abbreviation": "Ferr",
+    "aliases": ["Serum Ferritin"],
+    "category": "Organ Function",
+    "unit": "ng/mL",
+    "reference_range": {"min": 15, "max": 300},
+    "optimal_range": {"min": 60, "max": 120},
+    "critical_high": 400.0,
+    "elevated_indicates": ["Iron overload (Hemochromatosis)", "Systemic inflammation", "Fatty liver", "Metabolic syndrome", "Infection"],
+    "low_indicates": ["Iron deficiency", "Anemia", "Gastrointestinal bleeding", "Poor iron absorption", "Heavy menstruation"],
+    "lifestyle_factors": {
+      "increases": ["Red meat consumption", "Iron supplementation", "Alcohol intake", "Cooking in cast iron", "Vitamin C with meals"],
+      "decreases": ["Blood donation", "Menstruation", "Plant-based diets", "Consuming tea/coffee with meals (tannins inhibit absorption)", "Intense endurance exercise"]
+    },
+    "related_panels": ["Iron Panel", "Anemia Panel", "Inflammatory Panel"],
+    "longevity_relevance": "Ferritin represents stored iron, but it is also an acute-phase reactant (inflammation marker). Both iron deficiency (leading to fatigue and poor cellular respiration) and iron overload (driving oxidative stress and accelerated aging) are detrimental. Maintaining ferritin in the optimal 'sweet spot' is key for healthy cellular function and longevity."
+  }
+]

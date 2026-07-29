@@ -1,0 +1,22 @@
+TITLE: Inflammaging: Chronic Low-Grade Inflammation as a Driver of Age-Related Disease
+
+ABSTRACT
+Aging is characterized by a persistent, low-grade, sterile inflammatory state termed "inflammaging." This chronic inflammation is a highly significant risk factor for morbidity and mortality in the elderly, driving the pathogenesis of conditions such as cardiovascular disease, Alzheimer's, and type 2 diabetes. This paper reviews the cellular sources of inflammaging, primarily cellular senescence, and discusses therapeutic strategies, including senolytics, to mitigate inflammatory cascades.
+
+INTRODUCTION
+Acute inflammation is a vital, self-limiting immune response to pathogens or tissue injury. In contrast, inflammaging is a chronic, systemic, and unresolved inflammatory state that increases progressively with age. It occurs in the absence of overt infection (sterile inflammation) and is marked by elevated circulating levels of pro-inflammatory cytokines such as Interleukin-6 (IL-6), Tumor Necrosis Factor-alpha (TNF-alpha), and C-Reactive Protein (CRP). Inflammaging acts as a central pillar of biological aging, linking various age-related pathologies through shared mechanistic pathways.
+
+KEY FINDINGS
+1. Cellular Senescence and the SASP: One of the primary drivers of inflammaging is the accumulation of senescent cells. These are cells that have permanently ceased dividing due to DNA damage, telomere shortening, or oncogenic stress. While they stop dividing, they remain metabolically active and secrete a toxic mixture of cytokines, chemokines, and proteases known as the Senescence-Associated Secretory Phenotype (SASP). This SASP damages surrounding healthy tissue and perpetuates systemic inflammation.
+2. The NF-kB Pathway: The transcription factor Nuclear Factor kappa B (NF-kB) is the master regulator of the inflammatory response. Its chronic activation in aging tissues leads to the sustained production of inflammatory mediators, creating a vicious cycle of tissue damage and further inflammation.
+3. Gut Permeability: Age-related changes in the gut microbiome and a decline in intestinal barrier function ("leaky gut") allow the translocation of microbial products, such as lipopolysaccharides (LPS), into the bloodstream. This chronic antigenic load continuously stimulates the innate immune system, contributing significantly to systemic inflammaging.
+4. Macrophage Dysfunction: With age, macrophages undergo a shift towards a pro-inflammatory (M1) phenotype and become less efficient at clearing cellular debris and senescent cells, further exacerbating tissue inflammation.
+
+CLINICAL IMPLICATIONS
+Combating inflammaging is a major focus of longevity research. 
+Senolytics: Pharmacological agents that selectively induce apoptosis in senescent cells (senolytics) have shown profound effects in animal models. The combination of Dasatinib (a tyrosine kinase inhibitor) and Quercetin (a flavonoid) has been shown to clear senescent cells, reduce SASP markers, and improve cardiovascular and physical function in older mice. Fisetin, another natural flavonoid, is currently in clinical trials as a potent senolytic.
+Dietary Interventions: Caloric restriction and time-restricted eating potently inhibit the NF-kB pathway. The Mediterranean diet, rich in anti-inflammatory polyphenols and omega-3 fatty acids, is clinically proven to lower systemic inflammatory markers like CRP and IL-6.
+Exercise: Regular physical activity, particularly skeletal muscle contraction, releases myokines that exert powerful systemic anti-inflammatory effects.
+
+CONCLUSION
+Inflammaging is a central mechanism linking the biological aging process to the onset of chronic disease. Targeting the sources of this chronic inflammation—particularly the elimination of senescent cells and the maintenance of gut barrier integrity—represents a highly promising avenue for extending human healthspan and delaying the onset of age-related morbidities.
