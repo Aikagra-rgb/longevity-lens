@@ -14,7 +14,7 @@ import threading
 class VectorStoreService:
     """
     Lightweight vector store using numpy for similarity search.
-    Persists to a JSON file on disk.
+    Persists to a JSON file on disk with automatic dimension mismatch recovery.
     """
     def __init__(self):
         self.store_path = Path(CHROMA_DB_PATH)
@@ -42,6 +42,12 @@ class VectorStoreService:
         """Compatibility method — no-op for this implementation."""
         return self
 
+    def clear(self):
+        """Reset and clear all indexed vectors."""
+        with self._lock:
+            self._data = {"documents": [], "embeddings": [], "metadatas": [], "ids": []}
+            self._save()
+
     def add_documents(self, docs: List[Dict[str, Any]]):
         """
         Add documents to the vector store.
@@ -62,6 +68,7 @@ class VectorStoreService:
     def query(self, embedding: List[float], top_k: int) -> List[Dict[str, Any]]:
         """
         Find top-k most similar documents using cosine similarity.
+        Includes automatic dimension mismatch recovery if embedding model dimensions change.
         """
         if not self._data["embeddings"]:
             return []
@@ -69,7 +76,13 @@ class VectorStoreService:
         query_vec = np.array(embedding, dtype=np.float32)
         doc_vecs = np.array(self._data["embeddings"], dtype=np.float32)
 
-        # Cosine similarity
+        # Dimension safety check
+        if doc_vecs.ndim < 2 or doc_vecs.shape[1] != query_vec.shape[0]:
+            print(f"[VectorStoreService] Embedding dimension mismatch (stored: {doc_vecs.shape[1] if doc_vecs.ndim > 1 else 'invalid'}, query: {query_vec.shape[0]}). Resetting index.")
+            self.clear()
+            return []
+
+        # Cosine similarity calculation
         query_norm = query_vec / (np.linalg.norm(query_vec) + 1e-10)
         doc_norms = doc_vecs / (np.linalg.norm(doc_vecs, axis=1, keepdims=True) + 1e-10)
         similarities = doc_norms @ query_norm

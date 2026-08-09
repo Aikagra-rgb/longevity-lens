@@ -5,12 +5,13 @@ import asyncio
 class LLMService:
     """
     LLMService using the new google-genai SDK (v1+).
-    Uses gemini-1.5-flash for fast, cost-effective, streaming responses.
-    Falls back to offline RAG mode if API unavailable.
+    Uses gemini-3.6-flash with automatic fallback to gemini-2.5-flash and gemini-2.0-flash
+    on 503 / 429 capacity spikes before defaulting to local offline RAG mode.
     """
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.model_name = CHAT_MODEL
+        self.candidate_models = [CHAT_MODEL, "gemini-2.5-flash", "gemini-2.0-flash"]
         self.client = None
         if api_key and not api_key.startswith("your-"):
             try:
@@ -123,27 +124,41 @@ CRITICAL INSTRUCTIONS:
             role = "user" if msg["role"] == "user" else "model"
             history.append(genai_types.Content(role=role, parts=[genai_types.Part(text=msg["content"])]))
 
-        try:
-            response_iter = await asyncio.get_event_loop().run_in_executor(
-                None,
-                lambda: self.client.models.generate_content_stream(
-                    model=self.model_name,
-                    contents=history + [genai_types.Content(role="user", parts=[genai_types.Part(text=user_query)])],
-                    config=genai_types.GenerateContentConfig(
-                        system_instruction=system_prompt,
-                        temperature=0.7,
-                        max_output_tokens=2048,
+        contents = history + [genai_types.Content(role="user", parts=[genai_types.Part(text=user_query)])]
+        config = genai_types.GenerateContentConfig(
+            system_instruction=system_prompt,
+            temperature=0.7,
+            max_output_tokens=2048,
+        )
+
+        # Multi-model fallback loop
+        last_error = None
+        for model_candidate in self.candidate_models:
+            try:
+                response_iter = await asyncio.get_event_loop().run_in_executor(
+                    None,
+                    lambda m=model_candidate: self.client.models.generate_content_stream(
+                        model=m,
+                        contents=contents,
+                        config=config
                     )
                 )
-            )
 
-            for chunk in response_iter:
-                if chunk.text:
-                    yield chunk.text
-                    await asyncio.sleep(0)
+                streamed_any = False
+                for chunk in response_iter:
+                    if chunk.text:
+                        streamed_any = True
+                        yield chunk.text
+                        await asyncio.sleep(0)
 
-        except Exception as e:
-            error_str = str(e)
-            print(f"[LLMService] Gemini streaming error, switching to fallback: {error_str}")
-            async for token in self._fallback_stream(messages, context_chunks, biomarker_data, "API Error"):
-                yield token
+                if streamed_any:
+                    return
+
+            except Exception as e:
+                last_error = str(e)
+                print(f"[LLMService] Model {model_candidate} error: {last_error}. Trying next candidate...")
+
+        # If all candidates failed -> trigger offline stream
+        print(f"[LLMService] All Gemini models failed. Triggering offline fallback.")
+        async for token in self._fallback_stream(messages, context_chunks, biomarker_data, f"API Error: {last_error}"):
+            yield token
