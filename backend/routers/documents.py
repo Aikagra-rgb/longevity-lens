@@ -9,7 +9,7 @@ from backend.models.schemas import DocumentUploadResponse, DocumentListResponse,
 from backend.services.vector_store import VectorStoreService
 from backend.services.document_parser import DocumentParser
 from backend.services.embeddings import EmbeddingService
-from backend.config import OPENAI_API_KEY, DATA_DIR
+from backend.config import GEMINI_API_KEY, DATA_DIR
 from backend.routers.chat import get_api_key
 
 router = APIRouter(prefix="/api/documents", tags=["Documents"])

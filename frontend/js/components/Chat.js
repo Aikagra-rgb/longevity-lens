@@ -13,7 +13,7 @@ export function renderChat() {
             
             <div class="chat-input-area">
                 <div class="chat-input-wrapper">
-                    <textarea id="chat-input" class="chat-input" placeholder="Ask about longevity biomarkers, research, or upload a document..." rows="1"></textarea>
+                    <textarea id="chat-input" class="chat-input" placeholder="Ask about longevity biomarkers, research papers, or biological age..." rows="1"></textarea>
                     <button id="chat-send-btn" class="chat-send-btn">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -68,21 +68,21 @@ function renderMessages() {
         container.innerHTML = `
             <div class="empty-state fade-in">
                 <div class="empty-icon pulse">🧬</div>
-                <h2>What would you like to research?</h2>
-                <p>Ask about biomarkers, longevity research, or health data</p>
+                <h2>Longevity & Healthspan Research Copilot</h2>
+                <p>Explore clinical research papers, biomarker targets, and epigenetic clocks</p>
                 <div class="starter-chips">
-                    <div class="starter-chip">What does an elevated CRP marker indicate?</div>
-                    <div class="starter-chip">How does exercise affect longevity biomarkers?</div>
-                    <div class="starter-chip">Explain epigenetic aging clocks</div>
-                    <div class="starter-chip">What lifestyle factors reduce inflammation?</div>
-                    <div class="starter-chip">What are optimal ranges for metabolic health markers?</div>
+                    <div class="starter-chip">🔥 What does an elevated CRP marker indicate, and what lifestyle factors lower it?</div>
+                    <div class="starter-chip">🔬 Explain Horvath DNAm Age vs. GrimAge mortality clock</div>
+                    <div class="starter-chip">⚡ How does fasting insulin affect metabolic biological aging?</div>
+                    <div class="starter-chip">🫀 What is the optimal ApoB target for cardiovascular longevity?</div>
+                    <div class="starter-chip">🧪 What are optimal ranges for key inflammaging markers?</div>
                 </div>
             </div>
         `;
         
         document.querySelectorAll('.starter-chip').forEach(chip => {
             chip.addEventListener('click', (e) => {
-                const text = e.target.textContent;
+                const text = e.target.textContent.replace(/^[\u1F300-\u1F9FF\u2600-\u26FF]\s*/, '');
                 sendMessage(text);
             });
         });
@@ -103,7 +103,7 @@ function renderMessages() {
         if (msg.citations && msg.citations.length > 0) {
             citationsHtml = `
                 <div class="citations-panel">
-                    <div style="font-weight: 500; font-size: 0.8rem; text-transform: uppercase;">Sources</div>
+                    <div style="font-weight: 500; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Cited Literature & Evidence Context</div>
                     ${msg.citations.map((c, i) => `
                         <div class="citation-card glass-panel">
                             <strong>[${i+1}] ${c.source}</strong> - ${c.section}<br>
@@ -121,7 +121,7 @@ function renderMessages() {
                 <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
                     ${msg.biomarkers.map(b => `
                         <span class="biomarker-inline" title="${b.name}">
-                            🧪 ${b.abbreviation}
+                            🧪 ${b.abbreviation}: Ref ${b.reference_range.min}-${b.reference_range.max} ${b.unit} (Optimal < ${b.optimal_range.max})
                         </span>
                     `).join('')}
                 </div>
@@ -157,11 +157,6 @@ function scrollToBottom() {
 }
 
 function sendMessage(text) {
-    if (!state.apiKey) {
-        showToast('Please set your API key in Settings first', 'warning');
-        return;
-    }
-
     // Add user message
     state.messages.push({ role: 'user', content: text });
     
@@ -201,19 +196,16 @@ function sendMessage(text) {
         content: m.content
     }));
     
-    // Setup references to the assistant message in DOM for streaming updates
     let currentContent = '';
     
     chatStream(text, history, 
         (token) => {
-            // Remove typing indicator if it exists
             const ti = document.getElementById('typing-indicator');
             if (ti) ti.remove();
             
             currentContent += token;
             state.messages[assistantIndex].content = currentContent;
             
-            // Re-render just the last message (inefficient but works for vanilla JS)
             renderMessages();
         },
         (citations) => {
@@ -223,7 +215,6 @@ function sendMessage(text) {
             state.messages[assistantIndex].biomarkers = biomarkers;
         },
         () => {
-            // Done
             const ti = document.getElementById('typing-indicator');
             if (ti) ti.remove();
             

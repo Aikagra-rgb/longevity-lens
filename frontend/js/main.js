@@ -5,19 +5,31 @@ import { renderDocuments } from './components/DocumentUpload.js';
 import { renderBiomarkers } from './components/BiomarkerPanel.js';
 import { renderBioAgePanel } from './components/BioAgePanel.js';
 import { renderEpigeneticPanel } from './components/EpigeneticPanel.js';
-import { getDocuments, checkHealth } from './utils/api.js';
+import { checkHealth } from './utils/api.js';
 
 export const state = {
     currentView: 'chat',
     messages: [],
     documents: [],
     apiKey: localStorage.getItem('longevitylens_api_key') || '',
+    hasServerKey: false,
     sidebarOpen: window.innerWidth > 768
 };
 
-export function init() {
+export async function init() {
     renderHeader();
     renderSidebar();
+
+    // Check server health to see if backend has OPENAI_API_KEY
+    try {
+        const health = await checkHealth();
+        if (health && health.has_api_key) {
+            state.hasServerKey = true;
+            renderHeader(); // update server status badge
+        }
+    } catch (e) {
+        console.warn("Server health check warning:", e);
+    }
     
     // Settings modal handlers
     document.getElementById('close-settings').addEventListener('click', hideSettingsModal);
@@ -37,6 +49,7 @@ export function init() {
         saveApiKey(val);
         hideSettingsModal();
         showToast('Settings saved successfully', 'success');
+        renderHeader();
     });
     
     document.getElementById('test-connection-btn').addEventListener('click', async () => {
@@ -57,7 +70,8 @@ export function init() {
         }
     });
 
-    if (!state.apiKey) {
+    // Only show modal automatically if NEITHER local key nor server key is present
+    if (!state.apiKey && !state.hasServerKey) {
         showSettingsModal();
     }
 

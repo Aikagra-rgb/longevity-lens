@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from backend.routers import chat, documents, biomarkers, lab_reports, export, epigenetics
 from backend.services.vector_store import VectorStoreService
 from backend.models.schemas import HealthResponse
-from backend.config import FRONTEND_DIR, OPENAI_API_KEY
+from backend.config import FRONTEND_DIR, GEMINI_API_KEY
 import os
 
 @asynccontextmanager
@@ -46,7 +46,7 @@ async def health_check():
         status="ok",
         documents_indexed=len(vs.get_all_document_ids()),
         total_chunks=vs.count(),
-        has_api_key=bool(OPENAI_API_KEY)
+        has_api_key=bool(GEMINI_API_KEY)
     )
 
 # Mount frontend/static files at /

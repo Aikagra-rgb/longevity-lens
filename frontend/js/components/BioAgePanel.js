@@ -12,10 +12,13 @@ export function renderBioAgePanel() {
                         <span>🧬</span> Biological Age & Healthspan Audit
                     </h2>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Clinical Levine PhenoAge Algorithm & Biomarker Risk Assessment (Direct FOXO Domain)
+                        Levine PhenoAge Algorithm & Biomarker Risk Assessment (Direct FOXO Domain)
                     </p>
                 </div>
-                <div style="display: flex; gap: 0.75rem;">
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <button id="load-sample-lab-btn" class="btn-secondary" style="display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 8px;">
+                        <span>⚡</span> Load Demo Lab Profile
+                    </button>
                     <label class="btn-secondary" style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: 8px;">
                         <span>📄</span> Auto-Parse Lab PDF
                         <input type="file" id="lab-pdf-upload" accept=".pdf" style="display: none;">
@@ -122,6 +125,21 @@ export function renderBioAgePanel() {
     };
 
     document.getElementById('calc-bioage-btn').addEventListener('click', runCalculation);
+
+    // One-click demo lab profile button
+    document.getElementById('load-sample-lab-btn').addEventListener('click', () => {
+        document.getElementById('input-crp').value = 2.8;
+        document.getElementById('input-glucose').value = 104;
+        document.getElementById('input-hba1c').value = 5.7;
+        document.getElementById('input-apob').value = 115;
+        document.getElementById('input-trig').value = 145;
+        document.getElementById('input-vitd').value = 26;
+        document.getElementById('input-alb').value = 4.2;
+        document.getElementById('input-creat').value = 1.1;
+
+        showToast("Demo Clinical Lab Profile Loaded!", "success");
+        runCalculation();
+    });
 
     // Auto-parse PDF upload
     document.getElementById('lab-pdf-upload').addEventListener('change', async (e) => {

@@ -6,20 +6,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # API Keys
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
-# ChromaDB Configuration
+# ChromaDB / VectorStore Configuration
 CHROMA_DB_PATH = str(BASE_DIR / "chroma_db")
 COLLECTION_NAME = "health_research"
 
-# OpenAI Models
-EMBEDDING_MODEL = "text-embedding-3-small"
-CHAT_MODEL = "gpt-4o-mini"
+# Gemini Models
+EMBEDDING_MODEL = "models/text-embedding-004"   # Google's latest embedding model (768-dim)
+CHAT_MODEL = "gemini-1.5-flash"                  # Fast, capable, generous free tier
 
 # Text Chunking
 CHUNK_SIZE = 800

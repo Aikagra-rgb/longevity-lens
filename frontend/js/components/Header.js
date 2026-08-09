@@ -3,6 +3,20 @@ import { showSettingsModal, toggleSidebar, state } from '../main.js';
 export function renderHeader() {
     const header = document.getElementById('header');
     
+    let keyStatusText = "🟢 Free Demo Mode Active";
+    let keyStatusColor = "rgba(0, 212, 170, 0.2)";
+    let keyTextColor = "var(--primary)";
+
+    if (state.apiKey) {
+        keyStatusText = "🔑 Custom Key Active";
+        keyStatusColor = "rgba(124, 92, 191, 0.2)";
+        keyTextColor = "#a78bfa";
+    } else if (!state.hasServerKey) {
+        keyStatusText = "⚡ Local RAG Fallback Active";
+        keyStatusColor = "rgba(245, 158, 11, 0.2)";
+        keyTextColor = "var(--warning)";
+    }
+
     header.innerHTML = `
         <div style="display: flex; align-items: center; gap: 1rem;">
             <button id="mobile-menu-btn" class="icon-btn hamburger hidden" style="${window.innerWidth <= 768 ? 'display: block;' : 'display: none;'}">
@@ -17,9 +31,13 @@ export function renderHeader() {
             </div>
         </div>
         
-        <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="glass-panel" style="padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; color: ${keyTextColor}; border-color: ${keyTextColor}; background: ${keyStatusColor}; display: flex; align-items: center; gap: 0.4rem;">
+                ${keyStatusText}
+            </div>
+
             <div class="glass-panel pulse" style="padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; color: var(--warning); border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05); display: flex; align-items: center; gap: 0.4rem;">
-                <span>ℹ️</span> Informational Use Only — Not Medical Advice
+                <span>ℹ️</span> Informational Use Only
             </div>
             <button id="header-settings-btn" class="icon-btn" title="Settings">⚙️</button>
         </div>
