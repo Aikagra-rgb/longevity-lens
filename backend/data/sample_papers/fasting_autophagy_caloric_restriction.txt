@@ -1,0 +1,24 @@
+TITLE: Autophagy Activation and Caloric Restriction Mimetics in Human Aging
+
+ABSTRACT
+Caloric restriction (CR) without malnutrition is the most thoroughly studied non-genetic intervention for extending lifespan across species. The mechanisms underlying CR include downregulation of nutrient-sensing pathways (mTOR, insulin/IGF-1), activation of energy sensors (AMPK, sirtuins), and induction of macroautophagy. This review examines human clinical trial data from the CALERIE study, time-restricted feeding (TRF) protocols, and natural caloric restriction mimetics (CRMs) such as spermidine and quercetin.
+
+1. THE CALERIE TRIAL FINDINGS
+The Comprehensive Assessment of Long-term Effects of Reducing Intake of Energy (CALERIE 2) trial demonstrated that a 14% caloric restriction over 2 years in non-obese humans led to:
+- Significant reductions in cardiometabolic risk markers (hs-CRP, total cholesterol, blood pressure).
+- Decreased systemic energy expenditure and basal metabolic rate beyond that expected from weight loss, indicating metabolic adaptation.
+- Preservation of thymus gland volume and T-cell generation, combating immunosenescence.
+- Slower biological aging as measured by Levine PhenoAge and DunedinPACE.
+
+2. TIME-RESTRICTED FEEDING (TRF 16:8) VS CALORIC RESTRICTION
+Intermittent fasting protocols—such as 16-hour daily fasting windows—confer many of the metabolic benefits of 24-hour caloric restriction without continuous energy deficit:
+- Autophagy Induction: Liver and vascular endothelial cell autophagy peaks after 14–16 hours of nutrient deprivation.
+- Glycogen Depletion: Shift from glucose utilization to hepatic ketone body production (beta-hydroxybutyrate), activating brain-derived neurotrophic factor (BDNF).
+
+3. CALORIC RESTRICTION MIMETICS (CRMs)
+For individuals unable to sustain caloric restriction or TRF, CRMs mimic the biochemical signal of nutrient scarcity:
+- Spermidine: A natural polyamine that induces autophagy via inhibition of acetyltransferase EP300. Clinical studies show spermidine supplementation improves memory performance and lowers cardiac hypertrophy.
+- Metformin & Berberine: Activate AMPK, inhibiting hepatic gluconeogenesis and mimicking CR metabolic gene expression profiles.
+
+CONCLUSION
+Activating energy-sensing networks through intermittent fasting, caloric restriction, or CRM supplementation represents an accessible approach for enhancing autophagic clearance and preserving physiological resilience.

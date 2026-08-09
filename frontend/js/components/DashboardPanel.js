@@ -19,7 +19,7 @@ export function renderDashboardPanel() {
 
             <!-- Metric Cards -->
             <div id="metric-cards" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:2rem;">
-                ${metricCard('📄', 'Research Papers', '8', 'Indexed & searchable', 'primary')}
+                ${metricCard('📄', 'Research Papers', '15', 'Indexed & searchable', 'primary')}
                 ${metricCard('🧪', 'Biomarkers', '20+', 'With clinical ranges', 'secondary')}
                 ${metricCard('🔬', 'Epigenetic Clocks', '3', 'Horvath · GrimAge · DunedinPACE', 'accent')}
                 ${metricCard('🤖', 'AI Engine', 'Gemini 3.6', 'Flash — latest model', 'success')}

@@ -1,0 +1,24 @@
+TITLE: mTOR Inhibition and Rapamycin Analogues in Longevity Medicine
+
+ABSTRACT
+Mechanistic Target of Rapamycin (mTOR) is the central nutrient-sensing kinase governing cellular growth, protein synthesis, and metabolic homeostasis. Hyperactivation of mTOR complex 1 (mTORC1) in nutrient-abundant states inhibits macroautophagy, accelerates cellular senescence, and drives age-related disease. Rapamycin (sirolimus) and its synthetic analogues (rapalogs) are the most robust pharmacological interventions known to extend lifespan across all tested model organisms. This review examines low-dose intermittent rapamycin protocols, their differential effects on mTORC1 versus mTORC2, autophagy induction, and immune function rejuvenation in clinical studies.
+
+1. THE mTORC1 / mTORC2 DUALITY
+mTOR functions in two distinct complexes:
+- mTORC1: Regulates protein translation (via S6K1 and 4E-BP1), lipid synthesis, and inhibits autophagy (via ULK1 phosphorylation). Chronic overactivation by elevated amino acids, insulin, and glucose suppresses cellular cleanup mechanisms.
+- mTORC2: Controls cytoskeletal organization and insulin-mediated Akt activation. Prolonged high-dose rapamycin administration inhibits mTORC2, leading to transient glucose intolerance and immunosuppression.
+
+2. INTERMITTENT DOSING FOR HEALTHSPAN
+To capture the longevity benefits of mTORC1 inhibition while avoiding mTORC2 side effects, clinical researchers utilize intermittent weekly dosing (e.g., 3–6 mg once per week).
+- Autophagy Induction: Weekly transient inhibition of mTORC1 unleashes autophagy, clearing misfolded protein aggregates and dysfunctional organelles (mitophagy).
+- Rejuvenation of Immune Senescence: In phase 2 clinical trials (MANNIK study), low-dose rapalog treatment in elderly adults enhanced response to influenza vaccination by 20% and reduced incidence of respiratory infections, demonstrating immune system rejuvenation rather than immunosuppression.
+
+3. INTERVENTIONAL TESTING PROGRAM (ITP) DATA
+The National Institute on Aging (NIA) Interventional Testing Program (ITP) has repeatedly confirmed that rapamycin extends median and maximum lifespan in genetically heterogeneous mice by 9–26%, even when initiated late in middle age (equivalent to 60 human years).
+
+4. BIOMARKER IMPACT & CLINICAL CONSIDERATIONS
+- Fasting Glucose & Insulin: Intermittent rapamycin may cause mild, reversible elevations in fasting glucose due to hepatic gluconeogenesis upregulation, accompanied by stable or lowered fasting insulin (indicating preserved peripheral insulin sensitivity).
+- Lipid Profile: Transient increases in triglycerides and LDL-C can occur, managed effectively via concurrent Zone 2 exercise and dietary fiber.
+
+CONCLUSION
+Intermittent mTORC1 inhibition via low-dose rapamycin represents a premier pharmacological strategy for slowing mammalian biological aging, enhancing immune resilience, and maintaining organ function into late life.

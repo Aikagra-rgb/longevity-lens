@@ -68,7 +68,7 @@ export function renderSidebar() {
             <div style="border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.5rem;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
                     <span style="font-size:0.7rem; color:var(--text-muted);">Research Papers</span>
-                    <span class="badge badge-primary" style="font-size:0.64rem;">8 indexed</span>
+                    <span class="badge badge-primary" style="font-size:0.64rem;">15 indexed</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.6rem;">
                     <span style="font-size:0.7rem; color:var(--text-muted);">AI Engine</span>

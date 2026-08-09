@@ -1,0 +1,23 @@
+TITLE: Senolytics and Cellular Senescence: Clearing SASP to Extend Healthspan
+
+ABSTRACT
+Cellular senescence—a state of irreversible cell cycle arrest accompanied by a pro-inflammatory secretory phenotype—is a primary hallmark of biological aging. Accumulated senescent cells drive systemic inflammaging, tissue degradation, and age-related chronic diseases. Senolytics represent a novel therapeutic class designed to selectively eliminate senescent cells by transiently disabling Pro-Survival Pathways (SCIPs). This paper reviews recent clinical trials evaluating senolytic combinations, specifically Dasatinib plus Quercetin (D+Q) and Fisetin, detailing their impact on inflammatory biomarkers (hs-CRP, IL-6, TNF-alpha), physical function, and biological age clocks.
+
+1. INTRODUCTION
+As cells age, persistent DNA damage, telomere attrition, and oncogenic stress activate p16INK4a and p21CIP1 pathways, halting division. Rather than undergoing apoptosis, senescent cells persist and secrete the Senescence-Associated Secretory Phenotype (SASP). SASP factors, including interleukin-6 (IL-6), interleukin-1beta (IL-1b), matrix metalloproteinases (MMP-3, MMP-9), and MCP-1, cause localized tissue destruction and spread senescence to neighboring healthy cells via paracrine signaling.
+
+2. MECHANISMS OF SENOLYTIC MOLECULES
+Unlike continuous immunosuppressive drugs, senolytics are administered intermittently ("hit-and-run" dosing) to temporarily suppress the anti-apoptotic networks (SENAPNs) that senescent cells rely on for survival.
+- Dasatinib + Quercetin (D+Q): Dasatinib targets BCL-xL and tyrosine kinase survival networks in senescent preadipocytes, while Quercetin inhibits PI3K/AKT and heat shock proteins in senescent endothelial cells.
+- Fisetin: A naturally occurring flavonoid that acts as a potent senolytic by targeting BCL-2/BCL-xL, HIF-1alpha, and NF-kB signaling pathways. Animal models demonstrate a 30% extension in median lifespan and significant reduction in SASP burden even when initiated late in life.
+
+3. CLINICAL TRIAL FINDINGS
+In human clinical trials (Mayo Clinic), D+Q administration in patients with idiopathic pulmonary fibrosis (IPF) and diabetic kidney disease demonstrated significant reductions in senescent cell burden in adipose and skin biopsies within 11 days of treatment. Serum SASP markers (IL-1a, IL-6, MMP-9, VEGF) decreased substantially.
+Intermittent Fisetin dosing protocols (20 mg/kg/day for 2 consecutive days per month) are currently being evaluated in clinical trials for frailty reduction, bone density maintenance, and reduction of epigenetic GrimAge acceleration.
+
+4. IMPLICATIONS FOR LONGEVITY & BIOMARKERS
+- Biomarker Tracking: Successful senolytic therapy manifests as a rapid drop in circulating hs-CRP, IL-6, and MMP levels.
+- Reversal of Inflammaging: Clearing senescent cells rejuvenates the stem cell niche, facilitating endogenous tissue regeneration in cartilage, vasculature, and cardiac tissue.
+
+CONCLUSION
+Senolytic interventions targeting senescent cell burden offer a transformative approach to targeting the root cause of age-related dysfunction. Intermittent dosing minimizes toxicity while achieving sustained reductions in systemic inflammaging.
