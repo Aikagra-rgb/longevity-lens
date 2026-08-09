@@ -17,9 +17,9 @@ FRONTEND_DIR = BASE_DIR.parent / "frontend"
 CHROMA_DB_PATH = str(BASE_DIR / "chroma_db")
 COLLECTION_NAME = "health_research"
 
-# Gemini Models
-EMBEDDING_MODEL = "models/text-embedding-004"   # Google's latest embedding model (768-dim)
-CHAT_MODEL = "gemini-1.5-flash"                  # Fast, capable, generous free tier
+# Gemini Models (google-genai SDK v1+ naming — no 'models/' prefix)
+EMBEDDING_MODEL = "gemini-embedding-004"   # Latest Google embedding model (3072-dim)
+CHAT_MODEL = "gemini-2.0-flash-lite"        # Highest free-tier quota model
 
 # Text Chunking
 CHUNK_SIZE = 800

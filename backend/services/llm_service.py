@@ -4,8 +4,9 @@ import asyncio
 
 class LLMService:
     """
-    LLMService class for interacting with Google Gemini Chat API with graceful fallback.
-    Uses gemini-1.5-flash for fast, cost-effective responses.
+    LLMService using the new google-genai SDK (v1+).
+    Uses gemini-1.5-flash for fast, cost-effective, streaming responses.
+    Falls back to offline RAG mode if API unavailable.
     """
     def __init__(self, api_key: str):
         self.api_key = api_key
@@ -13,9 +14,8 @@ class LLMService:
         self.client = None
         if api_key and not api_key.startswith("your-"):
             try:
-                import google.generativeai as genai
-                genai.configure(api_key=api_key)
-                self.client = genai
+                from google import genai
+                self.client = genai.Client(api_key=api_key)
             except Exception as e:
                 print(f"[LLMService] Could not initialise Gemini client: {e}")
                 self.client = None
@@ -39,9 +39,6 @@ CRITICAL INSTRUCTIONS:
         biomarker_data: List[Dict[str, Any]],
         error_msg: str
     ) -> AsyncGenerator[str, None]:
-        """
-        Structured research response from retrieved RAG context when Gemini API is unavailable.
-        """
         user_query = messages[-1]["content"] if messages else "health query"
 
         header = f"> ℹ️ **Notice**: *Gemini API is currently unavailable ({error_msg}). LongevityLens is responding in **Offline Research Mode** using local RAG context.*\n\n"
@@ -94,15 +91,12 @@ CRITICAL INSTRUCTIONS:
         context_chunks: List[Dict[str, Any]],
         biomarker_data: List[Dict[str, Any]]
     ) -> AsyncGenerator[str, None]:
-        """
-        Stream chat response using Gemini API, with automatic fallback if API fails.
-        """
         if not self.client:
             async for token in self._fallback_stream(messages, context_chunks, biomarker_data, "No active API key"):
                 yield token
             return
 
-        # Build augmented context string
+        # Build context string
         context_str = "RETRIEVED CONTEXT:\n"
         for i, chunk in enumerate(context_chunks):
             source = chunk['metadata'].get('source', 'Unknown')
@@ -120,30 +114,30 @@ CRITICAL INSTRUCTIONS:
                 context_str += f"- {b['name']} ({b['abbreviation']}): Optimal {opt_min}-{opt_max} {unit}, Reference {ref_min}-{ref_max} {unit}\n"
 
         system_prompt = self.build_system_prompt() + "\n\n" + context_str
+        user_query = messages[-1]["content"] if messages else ""
 
-        # Build Gemini conversation history (exclude last user message, add as current prompt)
+        # Build conversation history for multi-turn
+        from google.genai import types as genai_types
         history = []
         for msg in messages[:-1]:
             role = "user" if msg["role"] == "user" else "model"
-            history.append({"role": role, "parts": [msg["content"]]})
-
-        user_query = messages[-1]["content"] if messages else ""
+            history.append(genai_types.Content(role=role, parts=[genai_types.Part(text=msg["content"])]))
 
         try:
-            import google.generativeai as genai
-            model = genai.GenerativeModel(
-                model_name=self.model_name,
-                system_instruction=system_prompt
-            )
-            chat_session = model.start_chat(history=history)
-
-            # Stream the response
-            response = await asyncio.get_event_loop().run_in_executor(
+            response_iter = await asyncio.get_event_loop().run_in_executor(
                 None,
-                lambda: chat_session.send_message(user_query, stream=True)
+                lambda: self.client.models.generate_content_stream(
+                    model=self.model_name,
+                    contents=history + [genai_types.Content(role="user", parts=[genai_types.Part(text=user_query)])],
+                    config=genai_types.GenerateContentConfig(
+                        system_instruction=system_prompt,
+                        temperature=0.7,
+                        max_output_tokens=2048,
+                    )
+                )
             )
 
-            for chunk in response:
+            for chunk in response_iter:
                 if chunk.text:
                     yield chunk.text
                     await asyncio.sleep(0)
