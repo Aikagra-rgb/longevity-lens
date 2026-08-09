@@ -4,7 +4,7 @@ from typing import Dict, Any, List, Optional
 class EpigeneticClockEngine:
     """
     Epigenetic DNA Methylation Clock & DunedinPACE Simulator.
-    Directly mirrors FOXO Technologies' saliva-based DNA methylation testing platform.
+    Simulates saliva-based DNA methylation testing platform.
     
     Simulates:
     1. Horvath DNAm Age (Multi-tissue epigenetic clock)
@@ -103,5 +103,5 @@ class EpigeneticClockEngine:
             "profile_description": profile["description"],
             "lifestyle_context": profile["lifestyle"],
             "cpg_breakdown": cpg_breakdown,
-            "foxo_alignment_note": "Simulated DNA methylation assay output mirroring FOXO BioScience's saliva-based epigenetic biomarker profiling technology."
+            "epigenetic_note": "Simulated DNA methylation assay output mirroring saliva-based epigenetic biomarker profiling technology."
         }

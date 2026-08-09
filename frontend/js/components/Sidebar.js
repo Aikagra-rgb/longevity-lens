@@ -60,7 +60,7 @@ export function renderSidebar() {
                     ⚙️ Settings
                 </button>
                 <div style="font-size:0.65rem; color:var(--text-muted); text-align:center; margin-top:0.75rem;">
-                    FOXO Longevity Engine · v2.0
+                    LongevityLens Engine · v2.0
                 </div>
             </div>
         </div>

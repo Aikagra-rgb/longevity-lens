@@ -5,7 +5,6 @@ class BiologicalAgeCalculator:
     """
     Biological Age & Longevity Healthscore Calculator.
     Implements Levine PhenoAge clinical algorithm + Longevity Biomarker Composite Index.
-    Directly mirrors FOXO's core biological age testing technology.
     """
 
     BASELINE_MEANS = {

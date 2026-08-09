@@ -11,7 +11,7 @@ KEY FINDINGS
 2. Second-Generation Clocks (PhenoAge and GrimAge): To address this limitation, second-generation clocks were trained on clinical biomarkers of physiological dysfunction and mortality rather than just chronological age. DNAm PhenoAge correlates with clinical measures of aging, while DNAm GrimAge incorporates methylation proxies for plasma proteins (e.g., PAI-1, cystatin C, TIMP-1, leptin) and smoking pack-years. GrimAge stands as the most robust predictor of time-to-death, time-to-coronary heart disease, and time-to-cancer.
 3. Third-Generation Clocks (DunedinPACE): The DunedinPACE (Pace of Aging Calculated from Epigenome) represents a paradigm shift. Rather than measuring a static state of age, it measures the *rate* of aging—essentially a speedometer for biological decline, calculated from longitudinal data of individuals tracked since birth.
 4. Age Acceleration and Disease: Positive epigenetic age acceleration (biological age > chronological age) is associated with metabolic syndrome, frailty, cognitive decline, and increased all-cause mortality.
-5. The FOXO Connection: Genes associated with longevity, such as FOXO3, have been shown to influence the epigenetic landscape, preserving youthful methylation patterns in centenarians.
+5. The Longevity Gene Connection: Genes associated with longevity, such as sirtuins and centenarian transcription factors, have been shown to influence the epigenetic landscape, preserving youthful methylation patterns in centenarians.
 
 CLINICAL IMPLICATIONS
 Epigenetic clocks provide a measurable endpoint for anti-aging interventions. Clinical trials are now using these clocks to evaluate the efficacy of senolytics, NAD+ precursors, and dietary regimens.

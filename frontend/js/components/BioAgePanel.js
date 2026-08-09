@@ -12,7 +12,7 @@ export function renderBioAgePanel() {
                         <span>🧬</span> Biological Age & Healthspan Audit
                     </h2>
                     <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                        Levine PhenoAge Algorithm & Biomarker Risk Assessment (Direct FOXO Domain)
+                        Levine PhenoAge Algorithm & Biomarker Risk Assessment (Clinical Longevity Medicine)
                     </p>
                 </div>
                 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">

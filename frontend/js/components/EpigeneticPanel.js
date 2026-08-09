@@ -10,7 +10,7 @@ export function renderEpigeneticPanel() {
                     <span>🧬</span> Epigenetic Methylation Clock Simulator
                 </h2>
                 <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                    Directly mirrors FOXO's core saliva-based DNA methylation profiling technology (Horvath Clock, GrimAge, DunedinPACE).
+                    Simulates multi-tissue saliva-based DNA methylation profiling technology (Horvath Clock, GrimAge, DunedinPACE).
                 </p>
             </div>
 
@@ -182,7 +182,7 @@ function renderEpiResults(data) {
             </div>
 
             <div style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; text-align: left;">
-                ℹ️ <em>${data.foxo_alignment_note}</em>
+                ℹ️ <em>${data.epigenetic_note || 'Simulated DNA methylation assay output.'}</em>
             </div>
         </div>
     `;

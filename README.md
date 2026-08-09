@@ -191,13 +191,13 @@ longevity-lens/
 
 ---
 
-## 🤝 Domain Context (FOXO Technologies)
+## 🤝 Clinical Longevity Domain Context
 
-This project directly targets FOXO's core technology domain:
-- **DNA Methylation Clocks**: Horvath, GrimAge, DunedinPACE — the same frameworks FOXO uses for life insurance underwriting
-- **Biological Age Delta**: Difference between chronological and biological age — central to FOXO's underwriting thesis
-- **Inflammaging**: CRP, IL-6, TNF-α as aging biomarkers — FOXO's primary research focus
-- **RAG over Research Literature**: Demonstrating ability to build production AI systems over medical research data
+This project targets key technology areas in longevity medicine:
+- **DNA Methylation Clocks**: Horvath, GrimAge, DunedinPACE — state-of-the-art epigenetic biological age frameworks
+- **Biological Age Delta**: Quantitative difference between chronological and biological age using clinical blood biomarkers
+- **Inflammaging**: hs-CRP, IL-6, TNF-α as primary drivers of biological age acceleration
+- **RAG over Research Literature**: Production-grade RAG architecture streaming evidence-based research insights
 
 ---
 
