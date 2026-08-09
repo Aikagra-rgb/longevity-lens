@@ -76,9 +76,7 @@ export async function uploadDocument(file) {
     
     const res = await fetch(`${API_BASE}/api/documents/upload`, {
         method: 'POST',
-        headers: {
-            'X-API-Key': getApiKey()
-        },
+        headers: { 'X-API-Key': getApiKey() },
         body: formData
     });
     if(!res.ok) throw new Error('Upload failed');
@@ -146,6 +144,48 @@ export async function parseLabPdf(file, chronological_age = 45) {
         body: formData
     });
     if(!res.ok) throw new Error('Parsing lab PDF failed');
+    return res.json();
+}
+
+export async function calculateTrajectory(chronological_age, lab_history) {
+    const res = await fetch(`${API_BASE}/api/trajectory/calculate`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ chronological_age, lab_history })
+    });
+    if(!res.ok) throw new Error('Trajectory calculation failed');
+    return res.json();
+}
+
+export async function getPresetJourney() {
+    const res = await fetch(`${API_BASE}/api/trajectory/preset`, { headers: getHeaders() });
+    if(!res.ok) throw new Error('Failed to fetch preset journey');
+    return res.json();
+}
+
+export async function generateProtocol(chronological_age, labs) {
+    const res = await fetch(`${API_BASE}/api/protocol/generate`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ chronological_age, labs })
+    });
+    if(!res.ok) throw new Error('Protocol generation failed');
+    return res.json();
+}
+
+export async function getConsensusTopics() {
+    const res = await fetch(`${API_BASE}/api/consensus/topics`, { headers: getHeaders() });
+    if(!res.ok) throw new Error('Failed to fetch consensus topics');
+    return res.json();
+}
+
+export async function analyzeConsensus(query) {
+    const res = await fetch(`${API_BASE}/api/consensus/analyze`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({ query })
+    });
+    if(!res.ok) throw new Error('Consensus analysis failed');
     return res.json();
 }
 

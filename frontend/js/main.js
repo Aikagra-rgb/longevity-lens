@@ -6,6 +6,10 @@ import { renderBiomarkers } from './components/BiomarkerPanel.js';
 import { renderBioAgePanel } from './components/BioAgePanel.js';
 import { renderEpigeneticPanel } from './components/EpigeneticPanel.js';
 import { renderDashboardPanel } from './components/DashboardPanel.js';
+import { renderTrajectoryPanel } from './components/TrajectoryPanel.js';
+import { renderProtocolPanel } from './components/ProtocolPanel.js';
+import { renderMultiClockPanel } from './components/MultiClockPanel.js';
+import { renderConsensusPanel } from './components/ConsensusPanel.js';
 import { checkHealth } from './utils/api.js';
 
 export const state = {
@@ -101,10 +105,14 @@ export function navigateTo(view) {
 
     setTimeout(() => {
         switch (view) {
-            case 'dashboard':   renderDashboardPanel();  break;
+            case 'dashboard':   renderDashboardPanel();   break;
             case 'chat':        renderChat();             break;
-            case 'epigenetics': renderEpigeneticPanel();  break;
+            case 'consensus':   renderConsensusPanel();   break;
+            case 'multiclock':  renderMultiClockPanel();  break;
             case 'bioage':      renderBioAgePanel();      break;
+            case 'epigenetics': renderEpigeneticPanel();  break;
+            case 'trajectory':  renderTrajectoryPanel();  break;
+            case 'protocol':    renderProtocolPanel();    break;
             case 'documents':   renderDocuments();        break;
             case 'biomarkers':  renderBiomarkers();       break;
             default:            renderDashboardPanel();   break;

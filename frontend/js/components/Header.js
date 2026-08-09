@@ -68,8 +68,12 @@ function getPageTitle(view) {
     const titles = {
         dashboard:   'Dashboard',
         chat:        'Research Chat',
+        consensus:   'Multi-Paper Consensus Engine',
+        multiclock:  'Multi-Clock Biological Age Matrix',
+        bioage:      'PhenoAge Biological Audit',
         epigenetics: 'Epigenetic DNA Clocks',
-        bioage:      'Biological Age Audit',
+        trajectory:  'Healthspan Trajectory Tracker',
+        protocol:    'Personalized Protocol Builder',
         documents:   'Document Library',
         biomarkers:  'Biomarker Reference',
     };
@@ -78,10 +82,14 @@ function getPageTitle(view) {
 
 function getPageSubtitle(view) {
     const subs = {
-        dashboard:   'Overview · Research platform powered by Gemini 3.6',
-        chat:        'RAG-powered longevity research assistant',
-        epigenetics: 'Horvath · GrimAge · DunedinPACE methylation simulators',
-        bioage:      'Levine PhenoAge algorithm · clinical biomarker analysis',
+        dashboard:   'Overview · Longevity research platform v3.0',
+        chat:        'RAG-powered AI assistant streaming evidence from literature',
+        consensus:   'Synthesize conflicting research topics into structured agreement tables',
+        multiclock:  'Comparative matrix: PhenoAge, Horvath, GrimAge, DunedinPACE',
+        bioage:      'Levine PhenoAge algorithm & sub-system healthscore audit',
+        epigenetics: 'Horvath, GrimAge & DunedinPACE DNA methylation clock simulators',
+        trajectory:  'Multi-date biomarker trend lines & annual pace of aging rate',
+        protocol:    '4-tier evidence-based intervention stack mapped to sub-scores',
         documents:   'Index & search research papers via semantic embeddings',
         biomarkers:  '20+ longevity biomarkers with clinical & optimal ranges',
     };
