@@ -5,10 +5,11 @@ import { renderDocuments } from './components/DocumentUpload.js';
 import { renderBiomarkers } from './components/BiomarkerPanel.js';
 import { renderBioAgePanel } from './components/BioAgePanel.js';
 import { renderEpigeneticPanel } from './components/EpigeneticPanel.js';
+import { renderDashboardPanel } from './components/DashboardPanel.js';
 import { checkHealth } from './utils/api.js';
 
 export const state = {
-    currentView: 'chat',
+    currentView: 'dashboard',
     messages: [],
     documents: [],
     apiKey: localStorage.getItem('longevitylens_api_key') || '',
@@ -20,68 +21,64 @@ export async function init() {
     renderHeader();
     renderSidebar();
 
-    // Check server health to see if backend has OPENAI_API_KEY
+    // Check if server has Gemini API key
     try {
         const health = await checkHealth();
         if (health && health.has_api_key) {
             state.hasServerKey = true;
-            renderHeader(); // update server status badge
+            renderHeader();
         }
     } catch (e) {
-        console.warn("Server health check warning:", e);
+        console.warn('[LongevityLens] Health check warning:', e.message);
     }
-    
-    // Settings modal handlers
+
+    // Settings modal event wiring
     document.getElementById('close-settings').addEventListener('click', hideSettingsModal);
-    document.getElementById('toggle-api-key').addEventListener('click', (e) => {
+
+    document.getElementById('toggle-api-key').addEventListener('click', e => {
         const input = document.getElementById('api-key-input');
-        if (input.type === 'password') {
-            input.type = 'text';
-            e.target.textContent = 'Hide';
-        } else {
-            input.type = 'password';
-            e.target.textContent = 'Show';
-        }
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        e.target.textContent = isHidden ? 'Hide' : 'Show';
     });
-    
+
     document.getElementById('save-settings-btn').addEventListener('click', () => {
-        const val = document.getElementById('api-key-input').value;
+        const val = document.getElementById('api-key-input').value.trim();
         saveApiKey(val);
         hideSettingsModal();
-        showToast('Settings saved successfully', 'success');
         renderHeader();
+        showToast('API key saved successfully', 'success');
     });
-    
+
     document.getElementById('test-connection-btn').addEventListener('click', async () => {
-        const val = document.getElementById('api-key-input').value;
+        const val = document.getElementById('api-key-input').value.trim();
         const oldKey = state.apiKey;
-        state.apiKey = val; // temporarily set for test
+        state.apiKey = val;
+        showToast('Testing connection…', 'info');
         try {
             const res = await checkHealth();
-            if (res && res.status) {
-                showToast('Connection successful!', 'success');
+            if (res && res.status === 'ok') {
+                showToast('✓ Connection successful!', 'success');
             } else {
-                showToast('Connection failed. Please check your API key.', 'error');
+                showToast('Connection failed — check the key', 'error');
             }
         } catch (e) {
             showToast('Connection error: ' + e.message, 'error');
         } finally {
-            state.apiKey = oldKey; // restore
+            state.apiKey = oldKey;
         }
     });
 
-    // Only show modal automatically if NEITHER local key nor server key is present
+    // Only block with modal if no key anywhere
     if (!state.apiKey && !state.hasServerKey) {
         showSettingsModal();
     }
 
-    // Handle resize for sidebar
+    // Responsive sidebar
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && !state.sidebarOpen) {
-            state.sidebarOpen = true;
-            renderSidebar();
-        } else if (window.innerWidth <= 768 && state.sidebarOpen) {
-            state.sidebarOpen = false;
+        const shouldOpen = window.innerWidth > 768;
+        if (shouldOpen !== state.sidebarOpen) {
+            state.sidebarOpen = shouldOpen;
             renderSidebar();
         }
     });
@@ -91,28 +88,26 @@ export async function init() {
 
 export function navigateTo(view) {
     state.currentView = view;
-    renderSidebar(); // update active state
-    
+    renderSidebar();
+    renderHeader();
+
     const contentArea = document.getElementById('content-area');
-    contentArea.innerHTML = '<div class="skeleton" style="width:100%;height:100%;"></div>';
-    
-    // Close sidebar on mobile after navigation
+    contentArea.innerHTML = '<div class="skeleton"></div>';
+
     if (window.innerWidth <= 768) {
         state.sidebarOpen = false;
         renderSidebar();
     }
-    
+
     setTimeout(() => {
-        if (view === 'chat') {
-            renderChat();
-        } else if (view === 'epigenetics') {
-            renderEpigeneticPanel();
-        } else if (view === 'bioage') {
-            renderBioAgePanel();
-        } else if (view === 'documents') {
-            renderDocuments();
-        } else if (view === 'biomarkers') {
-            renderBiomarkers();
+        switch (view) {
+            case 'dashboard':   renderDashboardPanel();  break;
+            case 'chat':        renderChat();             break;
+            case 'epigenetics': renderEpigeneticPanel();  break;
+            case 'bioage':      renderBioAgePanel();      break;
+            case 'documents':   renderDocuments();        break;
+            case 'biomarkers':  renderBiomarkers();       break;
+            default:            renderDashboardPanel();   break;
         }
     }, 50);
 }
@@ -120,13 +115,13 @@ export function navigateTo(view) {
 export function showSettingsModal() {
     const modal = document.getElementById('settings-modal');
     const input = document.getElementById('api-key-input');
-    input.value = state.apiKey;
-    modal.classList.remove('hidden');
+    if (input) input.value = state.apiKey;
+    if (modal) modal.classList.remove('hidden');
 }
 
 export function hideSettingsModal() {
     const modal = document.getElementById('settings-modal');
-    modal.classList.add('hidden');
+    if (modal) modal.classList.add('hidden');
 }
 
 export function saveApiKey(key) {
@@ -136,12 +131,13 @@ export function saveApiKey(key) {
 
 export function showToast(message, type = 'success') {
     const toast = document.getElementById('notification-toast');
+    if (!toast) return;
     toast.textContent = message;
     toast.className = `toast ${type}`;
-    
-    setTimeout(() => {
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
         toast.classList.add('hidden');
-    }, 3000);
+    }, 3200);
 }
 
 export function toggleSidebar() {

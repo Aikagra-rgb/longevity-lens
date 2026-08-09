@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LongevityLens — Health Research Copilot</title>
-    <meta name="description" content="Premium RAG-powered health research assistant for longevity data and biomarker analysis.">
-    <meta property="og:title" content="LongevityLens — Health Research Copilot">
-    <meta property="og:description" content="Premium RAG-powered health research assistant for longevity data and biomarker analysis.">
-    
-    <!-- Google Fonts -->
+    <title>LongevityLens — AI Health Research Copilot</title>
+    <meta name="description" content="RAG-powered longevity research platform. Analyze biomarkers, compute biological age with PhenoAge, simulate epigenetic DNA methylation clocks, and chat with cutting-edge Gemini AI.">
+    <meta name="keywords" content="longevity, biomarkers, biological age, epigenetics, RAG, AI health research, PhenoAge, Horvath clock">
+    <meta property="og:title" content="LongevityLens — AI Health Research Copilot">
+    <meta property="og:description" content="RAG-powered longevity research platform powered by Gemini 3.6 Flash.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#00e5b4">
+
+    <!-- Google Fonts: Outfit (primary) + JetBrains Mono (code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="css/biomarker.css">
-    
-    <!-- Favicon -->
+
+    <!-- Favicon: DNA -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
 </head>
 <body>
@@ -34,17 +37,29 @@
     <div id="settings-modal" class="modal-overlay hidden">
         <div class="modal-panel glass-panel">
             <div class="modal-header">
-                <h2>⚙️ Settings</h2>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                    <span style="font-size:1.4rem;">⚙️</span>
+                    <div>
+                        <h2 style="font-size:1.1rem; margin:0;">Settings</h2>
+                        <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">LongevityLens v2.0 · Gemini 3.6-flash</p>
+                    </div>
+                </div>
                 <button id="close-settings" class="icon-btn">✕</button>
             </div>
             <div class="modal-body">
-                <label for="api-key-input">API Key</label>
+                <label style="font-size:0.8rem; color:var(--text-secondary); font-weight:500; display:block; margin-bottom:0.5rem;">
+                    Gemini API Key
+                    <span style="color:var(--text-muted); font-weight:400;"> — optional if server key is set</span>
+                </label>
                 <div class="input-group">
-                    <input type="password" id="api-key-input" class="input" placeholder="Enter your X-API-Key">
-                    <button id="toggle-api-key" class="btn-ghost">Show</button>
+                    <input type="password" id="api-key-input" class="input" placeholder="AIzaSy... or AQ.Ab8...">
+                    <button id="toggle-api-key" class="btn-ghost" style="white-space:nowrap; padding: 0 0.75rem;">Show</button>
+                </div>
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.25rem;">
+                    💡 Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--primary);">aistudio.google.com</a>. Without a key, the app uses the server's key or falls back to offline RAG mode.
                 </div>
                 <div class="modal-actions">
-                    <button id="test-connection-btn" class="btn-secondary">Test Connection</button>
+                    <button id="test-connection-btn" class="btn-secondary">🔌 Test Connection</button>
                     <button id="save-settings-btn" class="btn-primary">Save Key</button>
                 </div>
             </div>

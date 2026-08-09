@@ -1,95 +1,84 @@
-import { state, navigateTo, toggleSidebar } from '../main.js';
+import { state, navigateTo, toggleSidebar, showSettingsModal } from '../main.js';
 
 export function renderSidebar() {
     const sidebar = document.getElementById('sidebar');
     
-    // Toggle class for mobile responsiveness
-    if (state.sidebarOpen) {
-        sidebar.classList.add('open');
-    } else {
-        sidebar.classList.remove('open');
-    }
-    
+    if (state.sidebarOpen) sidebar.classList.add('open');
+    else sidebar.classList.remove('open');
+
+    const navItems = [
+        { view: 'dashboard',   icon: '🏠', label: 'Dashboard' },
+        { view: 'chat',        icon: '💬', label: 'Research Chat' },
+        { view: 'epigenetics', icon: '🔬', label: 'Epigenetic Clocks' },
+        { view: 'bioage',      icon: '🧬', label: 'Biological Age' },
+        { view: 'documents',   icon: '📄', label: 'Document Library' },
+        { view: 'biomarkers',  icon: '🧪', label: 'Biomarker Reference' },
+    ];
+
     sidebar.innerHTML = `
-        <div style="padding: 1.5rem; display: flex; flex-direction: column; height: 100%;">
-            <div style="margin-bottom: 1.5rem;">
-                <button id="new-chat-btn" class="btn-primary" style="width: 100%; border-radius: 20px;">
-                    <span>+</span> New Chat
-                </button>
-            </div>
-            
-            <nav style="display: flex; flex-direction: column; gap: 0.5rem; flex-grow: 1;">
-                <a href="#" class="nav-link ${state.currentView === 'chat' ? 'active' : ''}" data-view="chat">
-                    💬 Chat Research
-                </a>
-                <a href="#" class="nav-link ${state.currentView === 'epigenetics' ? 'active' : ''}" data-view="epigenetics">
-                    🔬 Epigenetic DNA Clocks
-                </a>
-                <a href="#" class="nav-link ${state.currentView === 'bioage' ? 'active' : ''}" data-view="bioage">
-                    🧬 PhenoAge Biological Audit
-                </a>
-                <a href="#" class="nav-link ${state.currentView === 'documents' ? 'active' : ''}" data-view="documents">
-                    📄 Document Library
-                </a>
-                <a href="#" class="nav-link ${state.currentView === 'biomarkers' ? 'active' : ''}" data-view="biomarkers">
-                    🧪 Biomarker Reference
-                </a>
-            </nav>
-            
-            <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border);">
-                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
-                    <span>Indexed Papers:</span>
-                    <span id="sidebar-doc-count">${state.documents.length || 8}</span>
+        <div style="display:flex; flex-direction:column; height:100%; padding: 1rem 0.75rem;">
+
+            <!-- Brand -->
+            <div style="display:flex; align-items:center; gap:0.6rem; padding: 0.5rem 0.5rem 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem;">
+                <div style="width:36px; height:36px; border-radius:10px; background: linear-gradient(135deg, var(--primary), #00b4d8); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; box-shadow: 0 4px 12px rgba(0,229,180,0.25);">🧬</div>
+                <div>
+                    <div style="font-weight:800; font-size:0.95rem; letter-spacing:-0.02em;">LongevityLens</div>
+                    <div style="font-size:0.68rem; color:var(--text-muted);">Health Research Copilot</div>
                 </div>
-                <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
-                    FOXO Longevity Research Engine v1.2
+            </div>
+
+            <!-- New Chat button -->
+            <button id="new-chat-btn" class="btn-primary" style="width:100%; border-radius:var(--radius-sm); margin-bottom:1rem; font-size:0.85rem;">
+                ✦ New Conversation
+            </button>
+
+            <!-- Nav section label -->
+            <div class="section-label">Navigation</div>
+
+            <!-- Nav links -->
+            <nav style="display:flex; flex-direction:column; gap:0.2rem; flex-grow:1;">
+                ${navItems.map(item => `
+                    <a href="#" class="nav-link ${state.currentView === item.view ? 'active' : ''}" data-view="${item.view}">
+                        <span class="nav-icon">${item.icon}</span>
+                        <span>${item.label}</span>
+                        ${state.currentView === item.view ? '<span style="margin-left:auto; width:6px; height:6px; background:var(--primary); border-radius:50%;"></span>' : ''}
+                    </a>
+                `).join('')}
+            </nav>
+
+            <!-- Footer -->
+            <div style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+                    <span style="font-size:0.72rem; color:var(--text-muted);">Research Papers</span>
+                    <span class="badge badge-primary" style="font-size:0.66rem;">8 indexed</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.75rem;">
+                    <span style="font-size:0.72rem; color:var(--text-muted);">AI Engine</span>
+                    <span class="badge badge-success" style="font-size:0.66rem;">Gemini 3.6</span>
+                </div>
+                <button id="sidebar-settings-btn" class="btn-secondary" style="width:100%; font-size:0.8rem; padding:0.4rem;">
+                    ⚙️ Settings
+                </button>
+                <div style="font-size:0.65rem; color:var(--text-muted); text-align:center; margin-top:0.75rem;">
+                    FOXO Longevity Engine · v2.0
                 </div>
             </div>
         </div>
     `;
-    
-    // Add styles dynamically for nav links
-    const styleId = 'sidebar-styles';
-    if (!document.getElementById(styleId)) {
-        const style = document.createElement('style');
-        style.id = styleId;
-        style.textContent = `
-            .nav-link {
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                padding: 0.75rem 1rem;
-                color: var(--text-secondary);
-                text-decoration: none;
-                border-radius: var(--radius-sm);
-                transition: all var(--transition);
-                font-weight: 500;
-                font-size: 0.95rem;
-            }
-            .nav-link:hover {
-                background: var(--surface);
-                color: var(--text-primary);
-            }
-            .nav-link.active {
-                background: rgba(0, 212, 170, 0.1);
-                color: var(--primary);
-                border-left: 3px solid var(--primary);
-                border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    // Attach event listeners
+
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', e => {
             e.preventDefault();
             navigateTo(e.target.closest('.nav-link').dataset.view);
         });
     });
-    
+
     document.getElementById('new-chat-btn').addEventListener('click', () => {
         state.messages = [];
+        localStorage.removeItem('ll_messages');
         navigateTo('chat');
     });
+
+    const settingsBtn = document.getElementById('sidebar-settings-btn');
+    if (settingsBtn) settingsBtn.addEventListener('click', showSettingsModal);
 }
