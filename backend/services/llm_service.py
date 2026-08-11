@@ -1,4 +1,5 @@
 from backend.config import CHAT_MODEL
+from backend.services.gemini_client import resolve_gemini_client
 from typing import List, Dict, Any, AsyncGenerator
 import asyncio
 
@@ -12,14 +13,7 @@ class LLMService:
         self.api_key = api_key
         self.model_name = CHAT_MODEL
         self.candidate_models = [CHAT_MODEL, "gemini-2.5-flash", "gemini-2.0-flash"]
-        self.client = None
-        if api_key and not api_key.startswith("your-"):
-            try:
-                from google import genai
-                self.client = genai.Client(api_key=api_key)
-            except Exception as e:
-                print(f"[LLMService] Could not initialise Gemini client: {e}")
-                self.client = None
+        self.client, self.api_key = resolve_gemini_client(api_key)
 
     def build_system_prompt(self) -> str:
         return """You are LongevityLens — a Health & Longevity Research Copilot powered by RAG (Retrieval-Augmented Generation).
@@ -157,6 +151,37 @@ CRITICAL INSTRUCTIONS:
             except Exception as e:
                 last_error = str(e)
                 print(f"[LLMService] Model {model_candidate} error: {last_error}. Trying next candidate...")
+
+        # If all candidates failed, retry once with the server key before offline mode
+        server_client, server_key = resolve_gemini_client("")
+        if server_client and server_client is not self.client:
+            print("[LLMService] Retrying with server API key...")
+            self.client = server_client
+            self.api_key = server_key
+            for model_candidate in self.candidate_models:
+                try:
+                    response_iter = await asyncio.get_event_loop().run_in_executor(
+                        None,
+                        lambda m=model_candidate: self.client.models.generate_content_stream(
+                            model=m,
+                            contents=contents,
+                            config=config
+                        )
+                    )
+
+                    streamed_any = False
+                    for chunk in response_iter:
+                        if chunk.text:
+                            streamed_any = True
+                            yield chunk.text
+                            await asyncio.sleep(0)
+
+                    if streamed_any:
+                        return
+
+                except Exception as e:
+                    last_error = str(e)
+                    print(f"[LLMService] Server key model {model_candidate} error: {last_error}")
 
         # If all candidates failed -> trigger offline stream
         print(f"[LLMService] All Gemini models failed. Triggering offline fallback.")

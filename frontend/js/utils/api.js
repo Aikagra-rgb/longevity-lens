@@ -199,6 +199,18 @@ export async function exportReport(bio_age_data = null, messages = [], biomarker
     return res.blob();
 }
 
+export async function validateApiKey(apiKey = '') {
+    const headers = { 'Content-Type': 'application/json' };
+    if (apiKey) headers['X-API-Key'] = apiKey;
+
+    const res = await fetch(`${API_BASE}/api/health/validate-key`, {
+        method: 'POST',
+        headers
+    });
+    if (!res.ok) throw new Error('Key validation failed');
+    return res.json();
+}
+
 export async function checkHealth() {
     const res = await fetch(`${API_BASE}/api/health`, { headers: getHeaders() });
     if(!res.ok) throw new Error('Health check failed');

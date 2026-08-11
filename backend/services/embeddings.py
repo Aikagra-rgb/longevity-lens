@@ -2,6 +2,7 @@ import numpy as np
 from typing import List
 import hashlib
 from backend.config import EMBEDDING_MODEL
+from backend.services.gemini_client import resolve_gemini_client
 
 class EmbeddingService:
     """
@@ -10,16 +11,8 @@ class EmbeddingService:
     Falls back gracefully to deterministic local hash vectors if no API key.
     """
     def __init__(self, api_key: str):
-        self.api_key = api_key
         self.model = EMBEDDING_MODEL
-        self._client = None
-        if api_key and not api_key.startswith("your-"):
-            try:
-                from google import genai
-                self._client = genai.Client(api_key=api_key)
-            except Exception as e:
-                print(f"[EmbeddingService] Could not initialise Gemini client: {e}")
-                self._client = None
+        self._client, self.api_key = resolve_gemini_client(api_key)
 
     def _fallback_embed(self, text: str) -> List[float]:
         """
@@ -39,6 +32,14 @@ class EmbeddingService:
             vec = vec / norm
         return vec.tolist()
 
+    def _retry_with_server_key(self) -> bool:
+        server_client, server_key = resolve_gemini_client("")
+        if server_client and server_client is not self._client:
+            self._client = server_client
+            self.api_key = server_key
+            return True
+        return False
+
     def embed_text(self, text: str) -> List[float]:
         if self._client:
             try:
@@ -49,6 +50,15 @@ class EmbeddingService:
                 return result.embeddings[0].values
             except Exception as e:
                 print(f"[EmbeddingService] Gemini embed fallback: {e}")
+                if self._retry_with_server_key():
+                    try:
+                        result = self._client.models.embed_content(
+                            model=self.model,
+                            contents=text,
+                        )
+                        return result.embeddings[0].values
+                    except Exception as e2:
+                        print(f"[EmbeddingService] Server key embed fallback: {e2}")
                 return self._fallback_embed(text)
         return self._fallback_embed(text)
 
@@ -71,5 +81,17 @@ class EmbeddingService:
                 return results
             except Exception as e:
                 print(f"[EmbeddingService] Gemini batch embed fallback: {e}")
+                if self._retry_with_server_key():
+                    try:
+                        results = []
+                        for text in texts:
+                            result = self._client.models.embed_content(
+                                model=self.model,
+                                contents=text,
+                            )
+                            results.append(result.embeddings[0].values)
+                        return results
+                    except Exception as e2:
+                        print(f"[EmbeddingService] Server key batch embed fallback: {e2}")
                 return [self._fallback_embed(t) for t in texts]
         return [self._fallback_embed(t) for t in texts]

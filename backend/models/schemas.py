@@ -70,3 +70,8 @@ class HealthResponse(BaseModel):
     documents_indexed: int
     total_chunks: int
     has_api_key: bool
+
+class ValidateKeyResponse(BaseModel):
+    valid: bool
+    source: str  # "client", "server", or "none"
+    message: str

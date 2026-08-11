@@ -10,7 +10,7 @@ import { renderTrajectoryPanel } from './components/TrajectoryPanel.js';
 import { renderProtocolPanel } from './components/ProtocolPanel.js';
 import { renderMultiClockPanel } from './components/MultiClockPanel.js';
 import { renderConsensusPanel } from './components/ConsensusPanel.js';
-import { checkHealth } from './utils/api.js';
+import { checkHealth, validateApiKey } from './utils/api.js';
 
 export const state = {
     currentView: 'dashboard',
@@ -56,20 +56,17 @@ export async function init() {
 
     document.getElementById('test-connection-btn').addEventListener('click', async () => {
         const val = document.getElementById('api-key-input').value.trim();
-        const oldKey = state.apiKey;
-        state.apiKey = val;
         showToast('Testing connection…', 'info');
         try {
-            const res = await checkHealth();
-            if (res && res.status === 'ok') {
-                showToast('✓ Connection successful!', 'success');
+            const res = await validateApiKey(val);
+            if (res && res.valid) {
+                const label = res.source === 'server' ? 'Server key' : 'API key';
+                showToast(`✓ ${label} valid — ${res.message}`, 'success');
             } else {
-                showToast('Connection failed — check the key', 'error');
+                showToast(res?.message || 'Invalid API key', 'error');
             }
         } catch (e) {
             showToast('Connection error: ' + e.message, 'error');
-        } finally {
-            state.apiKey = oldKey;
         }
     });
 
@@ -135,6 +132,10 @@ export function hideSettingsModal() {
 export function saveApiKey(key) {
     state.apiKey = key;
     localStorage.setItem('longevitylens_api_key', key);
+}
+
+export function hasApiKey() {
+    return !!(state.apiKey || state.hasServerKey);
 }
 
 export function showToast(message, type = 'success') {

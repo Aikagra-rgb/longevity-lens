@@ -1,4 +1,4 @@
-import { state, showToast } from '../main.js';
+import { state, hasApiKey, showToast } from '../main.js';
 import { uploadDocument, getDocuments, deleteDocument, seedDocuments } from '../utils/api.js';
 
 export function renderDocuments() {
@@ -80,7 +80,7 @@ function setupUploadHandlers() {
     });
     
     seedBtn.addEventListener('click', async () => {
-        if (!state.apiKey) {
+        if (!hasApiKey()) {
             showToast('API Key required', 'error');
             return;
         }
@@ -106,7 +106,7 @@ async function handleUpload(file) {
         return;
     }
     
-    if (!state.apiKey) {
+    if (!hasApiKey()) {
         showToast('API Key required', 'error');
         return;
     }
@@ -129,7 +129,7 @@ async function handleUpload(file) {
 async function loadDocuments() {
     const list = document.getElementById('document-list');
     
-    if (!state.apiKey) {
+    if (!hasApiKey()) {
         list.innerHTML = `<p style="color: var(--text-secondary); grid-column: 1/-1;">Please configure your API key to view documents.</p>`;
         return;
     }

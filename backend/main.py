@@ -1,12 +1,13 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+from typing import Optional
 from backend.routers import chat, documents, biomarkers, lab_reports, export, epigenetics, trajectory, protocol, consensus
 from backend.services.vector_store import VectorStoreService
-from backend.models.schemas import HealthResponse
+from backend.services.gemini_client import validate_gemini_key
+from backend.models.schemas import HealthResponse, ValidateKeyResponse
 from backend.config import FRONTEND_DIR, GEMINI_API_KEY
-import os
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -51,6 +52,22 @@ async def health_check():
         total_chunks=vs.count(),
         has_api_key=bool(GEMINI_API_KEY)
     )
+
+@app.post("/api/health/validate-key", response_model=ValidateKeyResponse, tags=["Health"])
+async def validate_api_key(x_api_key: Optional[str] = Header(None)):
+    client_key = (x_api_key or "").strip()
+    if not client_key:
+        if GEMINI_API_KEY:
+            valid, message = validate_gemini_key(GEMINI_API_KEY)
+            return ValidateKeyResponse(
+                valid=valid,
+                source="server",
+                message=message if valid else f"Server key invalid: {message}"
+            )
+        return ValidateKeyResponse(valid=False, source="none", message="No API key provided")
+
+    valid, message = validate_gemini_key(client_key)
+    return ValidateKeyResponse(valid=valid, source="client", message=message)
 
 # Mount frontend/static files at /
 # We mount AFTER API routes so /api/* routes take priority

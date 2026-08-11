@@ -11,7 +11,10 @@ rag_pipeline = RAGPipeline()
 async def get_api_key(x_api_key: Optional[str] = Header(None)) -> str:
     # Use client-supplied key, or fall back to server GEMINI_API_KEY.
     # If neither is present, return empty string — the LLMService will use offline RAG fallback.
-    return x_api_key or GEMINI_API_KEY or ""
+    client_key = (x_api_key or "").strip()
+    if client_key:
+        return client_key
+    return GEMINI_API_KEY or ""
 
 @router.post("")
 async def chat_endpoint(request: ChatRequest, api_key: str = Depends(get_api_key)):

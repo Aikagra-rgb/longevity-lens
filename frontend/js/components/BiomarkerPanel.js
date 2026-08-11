@@ -1,4 +1,4 @@
-import { state, showToast } from '../main.js';
+import { hasApiKey, showToast } from '../main.js';
 import { getBiomarkers, searchBiomarkers, getBiomarker } from '../utils/api.js';
 
 let allCategories = [];
@@ -72,7 +72,7 @@ function setupListeners() {
 }
 
 async function loadInitialData() {
-    if (!state.apiKey) {
+    if (!hasApiKey()) {
         document.getElementById('biomarker-grid').innerHTML = `<p style="color: var(--text-secondary); grid-column: 1/-1;">Please configure your API key.</p>`;
         return;
     }
