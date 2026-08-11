@@ -19,7 +19,7 @@ export function renderDashboardPanel() {
 
             <!-- Metric Cards -->
             <div id="metric-cards" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:2rem;">
-                ${metricCard('📄', 'Research Papers', '15', 'Indexed & searchable', 'primary')}
+                ${metricCard('📄', 'Research Papers', '15', 'Indexed & searchable', 'primary', 'metric-papers-count')}
                 ${metricCard('🧪', 'Biomarkers', '20+', 'With clinical ranges', 'secondary')}
                 ${metricCard('🔬', 'Epigenetic Clocks', '3', 'Horvath · GrimAge · DunedinPACE', 'accent')}
                 ${metricCard('🤖', 'AI Engine', 'Gemini 3.6', 'Flash — latest model', 'success')}
@@ -68,11 +68,20 @@ export function renderDashboardPanel() {
     // Animate metric numbers
     animateCounters();
 
-    // Load health
+    // Load health & dynamically update paper count
     checkHealth().then(health => {
         const dot = document.getElementById('status-dot');
         const text = document.getElementById('status-text');
         const details = document.getElementById('status-details');
+        const papersEl = document.getElementById('metric-papers-count');
+
+        if (health && health.documents_indexed) {
+            if (papersEl) {
+                papersEl.dataset.target = health.documents_indexed;
+                papersEl.textContent = health.documents_indexed;
+            }
+        }
+
         if (!dot || !text || !details) return;
 
         if (health && health.status === 'ok') {
@@ -80,8 +89,8 @@ export function renderDashboardPanel() {
             text.textContent = 'Backend online';
             text.style.color = 'var(--success)';
             details.innerHTML = `
-                ${statusPill('📄 Papers', health.documents_indexed || 8)}
-                ${statusPill('🔢 Chunks', health.total_chunks || '150+')}
+                ${statusPill('📄 Papers', health.documents_indexed || 15)}
+                ${statusPill('🔢 Chunks', health.total_chunks || '86')}
                 ${statusPill('🔑 API Key', health.has_api_key ? 'Active' : 'Offline')}
                 ${statusPill('🤖 Model', 'gemini-3.6-flash')}
             `;
@@ -118,7 +127,7 @@ export function renderDashboardPanel() {
     });
 }
 
-function metricCard(icon, label, value, sub, color) {
+function metricCard(icon, label, value, sub, color, id = '') {
     const colors = {
         primary:   ['var(--primary)',    'var(--primary-dim)',    'rgba(0,229,180,0.2)'],
         secondary: ['#a78bfa',           'var(--secondary-dim)',  'rgba(124,92,191,0.2)'],
@@ -129,7 +138,7 @@ function metricCard(icon, label, value, sub, color) {
     return `
         <div class="glass-panel" style="padding:1.25rem; border-color:${border}; background:${bg};">
             <div style="font-size:1.6rem; margin-bottom:0.5rem;">${icon}</div>
-            <div class="metric-value" data-target="${value}" style="font-size:1.5rem; font-weight:800; color:${c}; font-family:var(--font-mono); letter-spacing:-0.03em;">${value}</div>
+            <div class="metric-value" ${id ? `id="${id}"` : ''} data-target="${value}" style="font-size:1.5rem; font-weight:800; color:${c}; font-family:var(--font-mono); letter-spacing:-0.03em;">${value}</div>
             <div style="font-weight:600; font-size:0.85rem; margin:0.15rem 0;">${label}</div>
             <div style="font-size:0.72rem; color:var(--text-muted);">${sub}</div>
         </div>
@@ -188,7 +197,6 @@ function statusPill(label, value) {
 }
 
 function animateCounters() {
-    // Simple number count-up for pure numeric metric values
     document.querySelectorAll('.metric-value').forEach(el => {
         const raw = el.dataset.target;
         const num = parseInt(raw);
