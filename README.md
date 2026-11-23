@@ -7,6 +7,8 @@
 
 > A full-stack longevity research platform combining **Google Gemini**, **3072-dimensional semantic RAG search**, **Levine PhenoAge computation**, and **epigenetic clock simulation** to analyze healthspan data and generate research-backed intervention insights.
 
+> **Live demo:** https://longevity-lens.onrender.com/ (hosted on Render's free plan, so the first load may take ~30-60s to wake up)
+
 > **Disclaimer:** LongevityLens provides educational information only, not medical advice. Consult a healthcare provider for clinical decisions.
 
 ---
@@ -117,7 +119,7 @@ docker run -p 8000:8000 --env-file .env longevity-lens
 
 ### 4. Deploy on Render
 
-The app is deployed on [Render](https://render.com) as a Docker web service, configured by `render.yaml` (service `longevity-lens`, free plan). To deploy your own copy: create a new Web Service (or Blueprint) from this repo, then set the `GEMINI_API_KEY` environment variable in the Render dashboard. The health check path is `/api/health`.
+The app is live at https://longevity-lens.onrender.com/, deployed on [Render](https://render.com) as a Docker web service, configured by `render.yaml` (service `longevity-lens`, free plan). To deploy your own copy: create a new Web Service (or Blueprint) from this repo, then set the `GEMINI_API_KEY` environment variable in the Render dashboard. The health check path is `/api/health`.
 
 ---
 
