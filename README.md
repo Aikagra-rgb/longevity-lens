@@ -115,6 +115,10 @@ docker build -t longevity-lens .
 docker run -p 8000:8000 --env-file .env longevity-lens
 ```
 
+### 4. Deploy on Render
+
+The app is deployed on [Render](https://render.com) as a Docker web service, configured by `render.yaml` (service `longevity-lens`, free plan). To deploy your own copy: create a new Web Service (or Blueprint) from this repo, then set the `GEMINI_API_KEY` environment variable in the Render dashboard. The health check path is `/api/health`.
+
 ---
 
 ## License
