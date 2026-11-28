@@ -2,6 +2,7 @@ from fastapi import FastAPI, Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+import os
 from typing import Optional
 from backend.routers import chat, documents, biomarkers, lab_reports, export, epigenetics, trajectory, protocol, consensus
 from backend.services.vector_store import VectorStoreService
@@ -50,7 +51,8 @@ async def health_check():
         status="ok",
         documents_indexed=len(vs.get_all_document_ids()),
         total_chunks=vs.count(),
-        has_api_key=bool(GEMINI_API_KEY)
+        has_api_key=bool(GEMINI_API_KEY),
+        ares_protected=bool(os.getenv("ARES_GATEWAY_URL", "").strip()),
     )
 
 @app.post("/api/health/validate-key", response_model=ValidateKeyResponse, tags=["Health"])

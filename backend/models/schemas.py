@@ -70,6 +70,7 @@ class HealthResponse(BaseModel):
     documents_indexed: int
     total_chunks: int
     has_api_key: bool
+    ares_protected: bool = False
 
 class ValidateKeyResponse(BaseModel):
     valid: bool

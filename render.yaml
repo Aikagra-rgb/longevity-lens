@@ -4,5 +4,15 @@ services:
     runtime: docker
     plan: free
     envVars:
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
+      - key: ARES_GATEWAY_URL
+        value: ""
+      - key: ARES_API_KEY
+        sync: false
+      - key: ARES_ORG_ID
+        value: org_longevity_lens
+      - key: ARES_APP_NAME
+        value: LongevityLensCopilot
+      - key: ARES_CANARY_TOKEN
+        value: CANARY_LONGEVITY_LENS_01
